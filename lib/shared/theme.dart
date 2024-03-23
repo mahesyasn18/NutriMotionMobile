@@ -14,6 +14,10 @@ TextStyle blackPrimaryTextStyle = GoogleFonts.plusJakartaSans(
   color: blackColor,
 );
 
+TextStyle blackPrimaryPoppinsTextStyle = GoogleFonts.poppins(
+  color: blackColor,
+);
+
 TextStyle greenPrimaryTextStyle = GoogleFonts.plusJakartaSans(
   color: greenColor,
 );
@@ -28,6 +32,14 @@ TextStyle darkGreenPrimaryTextStyle = GoogleFonts.montserrat(
 
 TextStyle secondaryBlackTextStyle = GoogleFonts.montserrat(
   color: blackSecondaryColor,
+);
+
+TextStyle secondaryPoppinsTextStyle = GoogleFonts.poppins(
+  color: blackSecondaryColor,
+);
+
+TextStyle whiteTextStyle = GoogleFonts.montserrat(
+  color: whiteColor,
 );
 
 FontWeight light = FontWeight.w300;
