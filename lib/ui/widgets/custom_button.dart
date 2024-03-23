@@ -28,7 +28,8 @@ class CustomFilledButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(56))),
           child: Text(
             title,
-            style: whiteTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+            style: whitePoppinsTextStyle.copyWith(
+                fontSize: 16, fontWeight: semiBold),
           )),
     );
   }
@@ -61,7 +62,7 @@ class CustomTextButton extends StatelessWidget {
                       side: BorderSide(color: greenColor)))),
           child: Text(
             title,
-            style: greenPrimaryTextStyle.copyWith(
+            style: greenPoppinsTextStyle.copyWith(
                 fontSize: 16, fontWeight: regular),
           )),
     );
@@ -88,7 +89,7 @@ class CustomTextNotFilledButton extends StatelessWidget {
         style: TextButton.styleFrom(padding: EdgeInsets.zero),
         child: Text(
           title,
-          style: greenPrimaryTextStyle.copyWith(
+          style: greenPoppinsTextStyle.copyWith(
               fontSize: 16, fontWeight: semiBold),
         ));
   }

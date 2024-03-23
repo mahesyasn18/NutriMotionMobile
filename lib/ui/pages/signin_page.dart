@@ -18,7 +18,7 @@ class SignInPage extends StatelessWidget {
             ),
             Text(
               'Sign In',
-              style: greenPrimaryTextStyle.copyWith(
+              style: greenPoppinsTextStyle.copyWith(
                 fontWeight: bold,
                 fontSize: 25,
               ),
@@ -54,7 +54,7 @@ class SignInPage extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'Forgot Password?',
-                style: greenPrimaryTextStyle.copyWith(
+                style: greenPoppinsTextStyle.copyWith(
                     fontSize: 14, fontWeight: semiBold),
               ),
             ),

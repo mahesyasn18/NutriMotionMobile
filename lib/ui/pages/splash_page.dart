@@ -55,12 +55,12 @@ class _SplashPageState extends State<SplashPage> {
                   children: [
                     TextSpan(
                       text: 'Nutri',
-                      style: greenPrimaryTextStyle.copyWith(
+                      style: greenPoppinsTextStyle.copyWith(
                           fontSize: 36, fontWeight: black),
                     ),
                     TextSpan(
                       text: 'Motion',
-                      style: blackPrimaryTextStyle.copyWith(
+                      style: blackPoppinsTextStyle.copyWith(
                           fontSize: 36, fontWeight: extraBold),
                     ),
                   ],

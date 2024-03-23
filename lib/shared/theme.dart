@@ -10,27 +10,19 @@ Color blackSecondaryColor = Color.fromRGBO(26, 23, 23, 1).withOpacity(0.6);
 Color grayColor = const Color(0xffA6A9AB);
 Color redColor = const Color(0xffEC6767);
 
-TextStyle blackPrimaryTextStyle = GoogleFonts.plusJakartaSans(
+TextStyle blackPoppinsTextStyle = GoogleFonts.poppins(
   color: blackColor,
 );
 
-TextStyle blackPrimaryPoppinsTextStyle = GoogleFonts.poppins(
-  color: blackColor,
-);
-
-TextStyle greenPrimaryTextStyle = GoogleFonts.plusJakartaSans(
+TextStyle greenPoppinsTextStyle = GoogleFonts.poppins(
   color: greenColor,
 );
 
-TextStyle greenSecondaryTextStyle = GoogleFonts.montserrat(
-  color: greenColor,
-);
-
-TextStyle darkGreenPrimaryTextStyle = GoogleFonts.montserrat(
+TextStyle darkGreenPoppinsPrimaryTextStyle = GoogleFonts.poppins(
   color: darkGreenColor,
 );
 
-TextStyle secondaryBlackTextStyle = GoogleFonts.montserrat(
+TextStyle GrayPoppinsTextStyle = GoogleFonts.poppins(
   color: blackSecondaryColor,
 );
 
@@ -38,7 +30,7 @@ TextStyle secondaryPoppinsTextStyle = GoogleFonts.poppins(
   color: blackSecondaryColor,
 );
 
-TextStyle whiteTextStyle = GoogleFonts.montserrat(
+TextStyle whitePoppinsTextStyle = GoogleFonts.poppins(
   color: whiteColor,
 );
 

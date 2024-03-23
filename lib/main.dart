@@ -3,6 +3,7 @@ import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
 import 'package:nutrimotion/ui/pages/onboarding_page.dart';
 import 'package:nutrimotion/ui/pages/signin_page.dart';
+import 'package:nutrimotion/ui/pages/signup_page.dart';
 import 'package:nutrimotion/ui/pages/splash_page.dart';
 
 void main() => runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           iconTheme: IconThemeData(
             color: blackColor,
           ),
-          titleTextStyle: blackPrimaryTextStyle.copyWith(
+          titleTextStyle: blackPoppinsTextStyle.copyWith(
               fontSize: 20, fontWeight: semiBold),
         ),
       ),
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/onboarding': (context) => const OnboardingPage(),
         '/landing': (context) => const LandingPage(),
         '/sign-in': (context) => const SignInPage(),
+        '/sign-up': (context) => const SignUpPage(),
       },
     );
   }

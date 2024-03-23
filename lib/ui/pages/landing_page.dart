@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 100, left: 32),
             child: Text(
               'Hello,',
-              style: greenPrimaryTextStyle.copyWith(
+              style: greenPoppinsTextStyle.copyWith(
                   fontWeight: extraBold, fontSize: 38),
             ),
           ),
@@ -23,7 +23,7 @@ class LandingPage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 32),
             child: Text(
               'Siap hidup sehat dengan NutriMotions?',
-              style: blackPrimaryTextStyle.copyWith(fontSize: 20),
+              style: blackPoppinsTextStyle.copyWith(fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -43,7 +43,7 @@ class LandingPage extends StatelessWidget {
             child: Text(
               'Mari ikuti kami untuk\nbantu anda menjadi\nlebih sehat',
               textAlign: TextAlign.center,
-              style: blackPrimaryTextStyle.copyWith(fontSize: 22),
+              style: blackPoppinsTextStyle.copyWith(fontSize: 22),
             ),
           ),
           SizedBox(
@@ -69,6 +69,9 @@ class LandingPage extends StatelessWidget {
               title: 'Sign Up',
               width: 360,
               height: 58,
+              onPressed: () {
+                Navigator.pushNamed(context, '/sign-up');
+              },
             ),
           ),
         ],

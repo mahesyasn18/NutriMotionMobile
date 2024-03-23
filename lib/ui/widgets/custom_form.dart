@@ -19,7 +19,7 @@ class CustomFormField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: blackPrimaryPoppinsTextStyle.copyWith(
+          style: blackPoppinsTextStyle.copyWith(
             fontWeight: semiBold,
             fontSize: 16,
           ),

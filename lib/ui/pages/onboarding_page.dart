@@ -79,7 +79,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                   Text(
                     titles[currentIndex],
-                    style: blackPrimaryTextStyle.copyWith(
+                    style: blackPoppinsTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: extraBold,
                     ),
@@ -90,7 +90,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                   Text(
                     subtitles[currentIndex],
-                    style: secondaryBlackTextStyle.copyWith(
+                    style: GrayPoppinsTextStyle.copyWith(
                       fontSize: 16,
                     ),
                     textAlign: TextAlign.center,
