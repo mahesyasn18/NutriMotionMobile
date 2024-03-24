@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_fonts: ^6.2.1
   carousel_slider: ^4.2.1
+  flow_builder: ^0.0.10
+  flutter_hooks: ^0.21.0
+  freezed: ^2.4.7
 
 dev_dependencies:
   flutter_test:

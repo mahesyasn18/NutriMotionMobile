@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
+import 'package:nutrimotion/ui/pages/landingpersonalinfo_page.dart';
 import 'package:nutrimotion/ui/pages/onboarding_page.dart';
+import 'package:nutrimotion/ui/pages/personalinfo_page.dart';
 import 'package:nutrimotion/ui/pages/signin_page.dart';
 import 'package:nutrimotion/ui/pages/signup_page.dart';
 import 'package:nutrimotion/ui/pages/splash_page.dart';
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/landing': (context) => const LandingPage(),
         '/sign-in': (context) => const SignInPage(),
         '/sign-up': (context) => const SignUpPage(),
+        '/landing-personal-info': (context) => const LandingPersonalInfoPage(),
+        '/personal-info': (context) => PersonalInfoPage(),
       },
     );
   }

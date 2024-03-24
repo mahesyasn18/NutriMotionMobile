@@ -11,7 +11,7 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: whiteColor,
         body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
           children: [
             const SizedBox(
               height: 50,
@@ -38,7 +38,7 @@ class SignInPage extends StatelessWidget {
               height: 30,
             ),
 
-            const CustomFormField(title: 'Your Email'),
+            const CustomFormField(title: 'Email'),
             const SizedBox(
               height: 16,
             ),
@@ -53,7 +53,7 @@ class SignInPage extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                'Forgot Password?',
+                'Lupa Password?',
                 style: greenPoppinsTextStyle.copyWith(
                     fontSize: 14, fontWeight: semiBold),
               ),
