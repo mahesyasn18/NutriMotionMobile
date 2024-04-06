@@ -39,6 +39,8 @@ dependencies:
   flow_builder: ^0.0.10
   flutter_hooks: ^0.21.0
   freezed: ^2.4.7
+  camera:
+  google_ml_kit: ^0.13.0
 
 dev_dependencies:
   flutter_test:
