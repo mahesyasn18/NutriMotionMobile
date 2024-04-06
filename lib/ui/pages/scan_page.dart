@@ -81,7 +81,7 @@ class _ScanPageState extends State<ScanPage> {
       switch (type) {
         case BarcodeType.product:
           setState(() {
-            result = "Product: ${barcode.displayValue}";
+            result = "${barcode.displayValue}";
           });
           break;
         default:
@@ -160,7 +160,8 @@ class _ScanPageState extends State<ScanPage> {
             height: screenHeight,
             child: CameraPreview(controller),
           ),
-          if (result != "") // Check if result is not null
+          if (result.isNotEmpty && result.length == 13)
+            // Check if result is not null
             Positioned(
               left: 20,
               bottom: 20,
@@ -185,7 +186,7 @@ class _ScanPageState extends State<ScanPage> {
                                 fontSize: 18, fontWeight: semiBold),
                           ),
                           Text(
-                            'Code ' + result,
+                            'Code Product: ' + result,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -201,6 +202,26 @@ class _ScanPageState extends State<ScanPage> {
                         width: 40,
                       )
                     ],
+                  ),
+                ),
+              ),
+            ),
+          if (result.isNotEmpty && result.length != 13)
+            // Check if result is not empty and its length is not 12
+            Positioned(
+              left: 20,
+              bottom: 20,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'Barcode tidak valid!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
               ),

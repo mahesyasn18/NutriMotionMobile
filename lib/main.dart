@@ -11,6 +11,7 @@ import 'package:nutrimotion/ui/pages/signin_page.dart';
 import 'package:nutrimotion/ui/pages/signup_page.dart';
 import 'package:nutrimotion/ui/pages/splash_page.dart';
 import 'package:camera/camera.dart';
+import 'package:nutrimotion/ui/pages/success_regist_page.dart';
 
 late List<CameraDescription> cameras;
 void main() async {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => const SignUpPage(),
         '/landing-personal-info': (context) => const LandingPersonalInfoPage(),
         '/personal-info': (context) => PersonalInfoPage(),
+        '/success-regist': (context) => SuccessRegisterPage(),
         '/home-page': (context) => HomePage(),
         '/scan-page': (context) => ScanPage(),
         '/product-show': (context) => ProductPage(),

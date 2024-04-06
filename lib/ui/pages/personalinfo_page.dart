@@ -76,7 +76,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
               children: [
                 SizedBox(height: 20),
                 if (currentIndex == forms.length - 1)
-                  CustomFilledButton(title: 'Finish'),
+                  CustomFilledButton(
+                    title: 'Finish',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/success-regist');
+                    },
+                  ),
                 if (currentIndex != forms.length - 1)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

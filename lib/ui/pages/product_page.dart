@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_button.dart';
 import 'package:nutrimotion/ui/widgets/custom_form.dart';
+import 'package:nutrimotion/ui/widgets/custom_information.dart';
+import 'package:nutrimotion/ui/widgets/custom_vita.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -21,11 +24,16 @@ class _ProductPageState extends State<ProductPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            child: Image.asset(
-              'assets/back.png',
-              width: 32,
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+              child: Image.asset(
+                'assets/back.png',
+                width: 32,
+              ),
             ),
           ),
           Center(
@@ -47,9 +55,8 @@ class _ProductPageState extends State<ProductPage> {
                 decoration: BoxDecoration(
                     color: whiteColor,
                     borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(100))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                        BorderRadius.only(topLeft: Radius.circular(70))),
+                child: ListView(
                   children: [
                     Center(
                       child: Text(
@@ -66,9 +73,6 @@ class _ProductPageState extends State<ProductPage> {
                       style: blackPoppinsTextStyle.copyWith(
                           fontSize: 20, fontWeight: semiBold),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     Text(
                       'Made fresh daily with our signature lettuce blend, cheddar cheese, diced tomatoes, cool, creamy avocado.',
                       style: blackPoppinsTextStyle,
@@ -77,87 +81,56 @@ class _ProductPageState extends State<ProductPage> {
                       height: 30,
                     ),
                     Text(
-                      'Nutrition Fact Scanning',
+                      'Nutrition Fact',
                       style: blackPoppinsTextStyle.copyWith(
                           fontSize: 20, fontWeight: semiBold),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Fat',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                        Text(
-                          '3 gr',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                      ],
+                    const CustomInformation(
+                        lemakTotal: "8",
+                        lemakJenuh: "4",
+                        protein: "6",
+                        karbohidratTotal: "19",
+                        gula: "11",
+                        garam: "85"),
+                    const SizedBox(
+                      height: 10,
                     ),
+                    CustomVita(
+                        vitA: "30",
+                        vitD: "30",
+                        vitE: "30",
+                        vitK: "30",
+                        vitB1: "30",
+                        vitB2: "30",
+                        vitB3: "30",
+                        vitB5: "30",
+                        vitB6: "20",
+                        folat: "20",
+                        vitB12: "20",
+                        biotin: "20",
+                        kolin: "20",
+                        vitC: "20",
+                        kalsium: "20",
+                        fosfor: "20",
+                        magnesium: "20",
+                        natrium: "20",
+                        kalium: "20",
+                        mangan: "20",
+                        tembaga: "20",
+                        kromium: "20",
+                        besi: "20",
+                        iodium: "20",
+                        seng: "20",
+                        selenium: "20",
+                        fluor: "20"),
                     Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Fat',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                        Text(
-                          '3 gr',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                      ],
+                    const SizedBox(
+                      height: 20,
                     ),
-                    Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Fat',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                        Text(
-                          '3 gr',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Fat',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                        Text(
-                          '3 gr',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total Fat',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                        Text(
-                          '3 gr',
-                          style: blackPoppinsTextStyle.copyWith(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Divider(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    CustomFilledButton(title: 'Add to your meal plan')
+                    CustomFilledButton(title: 'Tambahkan pada plan gizi harian')
                   ],
                 ),
               ),
