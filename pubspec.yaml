@@ -41,6 +41,11 @@ dependencies:
   freezed: ^2.4.7
   camera:
   google_ml_kit: ^0.13.0
+  http: ^1.1.2
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  another_flushbar: ^1.10.28
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:

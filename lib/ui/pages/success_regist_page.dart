@@ -42,7 +42,8 @@ class SuccessRegisterPage extends StatelessWidget {
               CustomFilledButton(
                 title: 'Continue',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home-page');
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/home-page', (route) => false);
                 },
               )
             ],

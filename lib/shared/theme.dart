@@ -8,7 +8,7 @@ Color primaryButtonColor = const Color(0xff319F43);
 Color whiteColor = const Color(0xffFFFFFF);
 Color blackSecondaryColor = Color.fromRGBO(26, 23, 23, 1).withOpacity(0.6);
 Color grayColor = const Color(0xffA6A9AB);
-Color redColor = const Color(0xffEC6767);
+Color redColor = const Color(0xffFF2566);
 
 TextStyle blackPoppinsTextStyle = GoogleFonts.poppins(
   color: blackColor,
