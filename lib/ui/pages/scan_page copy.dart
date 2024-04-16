@@ -1,13 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
-import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
-import 'package:nutrimotion/models/scan_model.dart';
 import 'package:nutrimotion/models/scans_model.dart';
 import 'package:nutrimotion/services/scan_service.dart';
-import 'package:nutrimotion/shared/shared_methods.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import '../../main.dart';
 
@@ -65,12 +61,9 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   void dispose() {
-    // Hentikan streaming gambar dari kamera
-    controller.stopImageStream();
-
-    // Hentikan scanner barcode
+    controller.dispose();
+    // Cancel any ongoing barcode scanning process
     barcodeScanner.close();
-
     super.dispose();
   }
 
@@ -94,7 +87,7 @@ class _ScanPageState extends State<ScanPage> {
               await ScanService().checkBarcode(barcodeValue);
 
           print(product.barcode_number.toString());
-          if (product.is_barcode_exist == true) {
+          if (product != null) {
             // If barcode exists, update the UI accordingly
             setState(() {
               result = product.barcode_number.toString();
@@ -103,8 +96,14 @@ class _ScanPageState extends State<ScanPage> {
           } else {
             // If barcode does not exist, display an error message
             setState(() {
-              result = 'Product Tidak tersedia';
+              result = '';
             });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Barcode tidak ditemukan dalam database!'),
+                backgroundColor: Colors.red,
+              ),
+            );
           }
         } catch (e) {
           // Handle any errors occurred during barcode checking
@@ -194,69 +193,51 @@ class _ScanPageState extends State<ScanPage> {
           ),
           if (result.isNotEmpty && result.length == 13)
             // Check if result is not null
-            if (result != "Product Tidak tersedia")
-              BlocConsumer<ScanBloc, ScanState>(
-                listener: (context, state) {
-                  if (state is ScanFailed) {
-                    showCustomSnackbar(context, state.e);
-                  }
-                  if (state is ScanProductSuccess) {
-                    Navigator.pushNamed(context, '/product-show');
-                  }
+            Positioned(
+              left: 20,
+              bottom: 20,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/product-show');
                 },
-                builder: (context, state) {
-                  return Positioned(
-                    left: 20,
-                    bottom: 20,
-                    child: GestureDetector(
-                      onTap: () {
-                        context.read<ScanBloc>().add(
-                              ScanCheckProduct(
-                                ScanModel(barcode_number: result),
-                              ),
-                            );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  foodname,
-                                  style: blackPoppinsTextStyle.copyWith(
-                                      fontSize: 18, fontWeight: semiBold),
-                                ),
-                                Text(
-                                  'Code Product: ' + result,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            foodname,
+                            style: blackPoppinsTextStyle.copyWith(
+                                fontSize: 18, fontWeight: semiBold),
+                          ),
+                          Text(
+                            'Code Product: ' + result,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
                             ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Image.asset(
-                              'assets/ic_ascan.png',
-                              width: 40,
-                            )
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  );
-                },
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Image.asset(
+                        'assets/ic_ascan.png',
+                        width: 40,
+                      )
+                    ],
+                  ),
+                ),
               ),
-          if ((result.isNotEmpty && result.length != 13) ||
-              result == "Product Tidak tersedia")
+            ),
+          if (result.isNotEmpty && result.length != 13)
             // Check if result is not empty and its length is not 12
             Positioned(
               left: 20,
@@ -268,7 +249,7 @@ class _ScanPageState extends State<ScanPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  "Barcode tidak sesuai!",
+                  'Barcode tidak valid!',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

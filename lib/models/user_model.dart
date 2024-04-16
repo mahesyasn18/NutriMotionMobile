@@ -7,7 +7,7 @@ class UserModel {
   final String? height;
   final String? gender;
   final String? birthday;
-
+  final String? token;
   UserModel({
     this.id,
     this.fullname,
@@ -17,6 +17,7 @@ class UserModel {
     this.height,
     this.gender,
     this.birthday,
+    this.token,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -27,6 +28,7 @@ class UserModel {
         height: json['height'],
         gender: json['gender'],
         birthday: json['birthday'],
+        token: json['token'],
       );
 
   UserModel copywith({
@@ -47,5 +49,6 @@ class UserModel {
         height: height ?? this.height,
         gender: gender ?? this.gender,
         birthday: birthday ?? this.birthday,
+        token: token,
       );
 }

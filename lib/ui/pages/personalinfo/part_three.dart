@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:nutrimotion/models/sign_up_form_model.dart';
 import 'package:nutrimotion/shared/shared_methods.dart';
+import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_button.dart';
 import 'package:nutrimotion/ui/widgets/custom_form.dart';
 
@@ -31,6 +32,7 @@ class _ThirdPageState extends State<ThirdPage> {
     print(widget.data.toJson());
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: whiteColor,
         title: Text('Data Personal'),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(

@@ -45,11 +45,11 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         elevation: 0,
         backgroundColor: Colors.white,
-        selectedLabelStyle: greenPoppinsTextStyle,
+        selectedLabelStyle: greenPoppinsTextStyle.copyWith(fontSize: 9),
         showSelectedLabels: true,
         currentIndex: currentIndex,
         showUnselectedLabels: true,
-        unselectedLabelStyle: blackPoppinsTextStyle,
+        unselectedLabelStyle: blackPoppinsTextStyle.copyWith(fontSize: 9),
         selectedItemColor: greenColor,
         unselectedItemColor: blackSecondaryColor,
         onTap: (value) {

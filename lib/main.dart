@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/home_page.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
@@ -28,7 +29,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthBloc()..add(AuthGetCurrentUser()),
+          create: (context) => AuthBloc()
+            ..add(
+              AuthGetCurrentUser(),
+            ),
+        ),
+        BlocProvider<ScanBloc>(
+          create: (context) => ScanBloc(),
         ),
       ],
       child: MaterialApp(

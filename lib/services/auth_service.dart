@@ -39,7 +39,10 @@ class AuthService {
 
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
-        user = user.copywith(password: data.password);
+        user = user.copywith(
+          email: data.email,
+          password: data.password,
+        );
 
         await storeCredentialToLocal(user);
 
@@ -58,12 +61,12 @@ class AuthService {
         Uri.parse('$baseUrl/login'),
         body: data.toJson(),
       );
-
-      print(res.body);
-
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
-        user = user.copywith(email: data.email, password: data.password);
+        user = user.copywith(
+          email: data.email,
+          password: data.password,
+        );
 
         await storeCredentialToLocal(user);
 
@@ -79,9 +82,11 @@ class AuthService {
   Future<void> storeCredentialToLocal(UserModel user) async {
     try {
       const storage = FlutterSecureStorage();
+      await storage.write(key: 'token', value: user.token);
       await storage.write(key: 'email', value: user.email);
       await storage.write(key: 'password', value: user.password);
-      print('email: ${user.email}\npassword: ${user.password}');
+      print(
+          'email: ${user.email}\npassword: ${user.password}\ntoken: ${user.token}');
     } catch (e) {
       rethrow;
     }
