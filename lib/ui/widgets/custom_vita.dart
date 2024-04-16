@@ -65,368 +65,55 @@ class CustomVita extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin A",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitA + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin D",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitD + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin E",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitE + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin K",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitK + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B1",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB1 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B2",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB2 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B3",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB3 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B5",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB5 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B6",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB6 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Folat",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  folat + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin B12",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitB12 + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Biotin",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  biotin + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Kolin",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  kolin + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Vitamin C",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  vitC + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Kalsium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  kalsium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Fosfor",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  fosfor + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Magnesium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  magnesium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Natrium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  natrium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Kalium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  kalium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Mangan",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  mangan + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Tembaga",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  tembaga + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Kromium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  kromium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Besi",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  besi + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Iodium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  iodium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Seng",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  seng + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Selenium",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  selenium + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Fluor",
-                  style: blackPoppinsTextStyle,
-                ),
-                Text(
-                  fluor + " %",
-                  style: blackPoppinsTextStyle,
-                ),
-              ],
-            ),
-          ],
-        ),
+        _buildNutrientRow("Vitamin A", vitA),
+        _buildNutrientRow("Vitamin D", vitD),
+        _buildNutrientRow("Vitamin E", vitE),
+        _buildNutrientRow("Vitamin K", vitK),
+        _buildNutrientRow("Vitamin B1", vitB1),
+        _buildNutrientRow("Vitamin B2", vitB2),
+        _buildNutrientRow("Vitamin B3", vitB3),
+        _buildNutrientRow("Vitamin B5", vitB5),
+        _buildNutrientRow("Vitamin B6", vitB6),
+        _buildNutrientRow("Folat", folat),
+        _buildNutrientRow("Vitamin B12", vitB12),
+        _buildNutrientRow("Biotin", biotin),
+        _buildNutrientRow("Kolin", kolin),
+        _buildNutrientRow("Vitamin C", vitC),
+        _buildNutrientRow("Kalsium", kalsium),
+        _buildNutrientRow("Fosfor", fosfor),
+        _buildNutrientRow("Magnesium", magnesium),
+        _buildNutrientRow("Natrium", natrium),
+        _buildNutrientRow("Kalium", kalium),
+        _buildNutrientRow("Mangan", mangan),
+        _buildNutrientRow("Tembaga", tembaga),
+        _buildNutrientRow("Kromium", kromium),
+        _buildNutrientRow("Besi", besi),
+        _buildNutrientRow("Iodium", iodium),
+        _buildNutrientRow("Seng", seng),
+        _buildNutrientRow("Selenium", selenium),
+        _buildNutrientRow("Fluor", fluor),
       ],
     );
+  }
+
+  Widget _buildNutrientRow(String nutrientName, String nutrientValue) {
+    if (nutrientValue != "null") {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            nutrientName,
+            style: blackPoppinsTextStyle,
+          ),
+          Text(
+            nutrientValue + " %",
+            style: blackPoppinsTextStyle,
+          ),
+        ],
+      );
+    } else {
+      // Return an empty container if the nutrient value is null or empty
+      return Container();
+    }
   }
 }

@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+
 class ProductModel {
   final int? id;
   final String? brand;
   final String? foodName;
+  final String? picture;
   final String? foodType;
   final String? size;
   final String? barcodeNumber;
@@ -45,6 +48,7 @@ class ProductModel {
     this.id,
     this.brand,
     this.foodName,
+    this.picture,
     this.foodType,
     this.size,
     this.barcodeNumber,
@@ -89,6 +93,7 @@ class ProductModel {
         id: json['id'],
         brand: json['brand'],
         foodName: json['food_name'],
+        picture: json['picture'],
         foodType: json['food_type'],
         size: json['size'],
         barcodeNumber: json['barcode_number'],

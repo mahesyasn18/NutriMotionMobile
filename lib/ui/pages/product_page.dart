@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
 import 'package:nutrimotion/shared/shared_methods.dart';
+import 'package:nutrimotion/shared/shared_values.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_button.dart';
-import 'package:nutrimotion/ui/widgets/custom_form.dart';
 import 'package:nutrimotion/ui/widgets/custom_information.dart';
 import 'package:nutrimotion/ui/widgets/custom_vita.dart';
 
@@ -57,9 +57,13 @@ class _ProductPageState extends State<ProductPage> {
                   child: Container(
                     width: 250,
                     height: 250,
-                    child: Image.asset(
-                      'assets/ultra.png',
-                    ),
+                    child: state.product.picture == null
+                        ? Image.asset(
+                            'assets/ultra.png',
+                          )
+                        : Image.network(
+                            '$baseUrls${state.product.picture!}',
+                          ),
                   ),
                 ),
                 Expanded(
@@ -106,44 +110,46 @@ class _ProductPageState extends State<ProductPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const CustomInformation(
-                              lemakTotal: "8",
-                              lemakJenuh: "4",
-                              protein: "6",
-                              karbohidratTotal: "19",
-                              gula: "11",
-                              garam: "85"),
+                          CustomInformation(
+                              lemakTotal: state.product.lemakTotal.toString(),
+                              lemakJenuh: state.product.lemakJenuh.toString(),
+                              protein: state.product.protein.toString(),
+                              karbohidratTotal:
+                                  state.product.karbohidratTotal.toString(),
+                              gula: state.product.gula.toString(),
+                              garam: state.product.garam.toString()),
                           const SizedBox(
                             height: 10,
                           ),
                           CustomVita(
-                              vitA: "30",
-                              vitD: "30",
-                              vitE: "30",
-                              vitK: "30",
-                              vitB1: "30",
-                              vitB2: "30",
-                              vitB3: "30",
-                              vitB5: "30",
-                              vitB6: "20",
-                              folat: "20",
-                              vitB12: "20",
-                              biotin: "20",
-                              kolin: "20",
-                              vitC: "20",
-                              kalsium: "20",
-                              fosfor: "20",
-                              magnesium: "20",
-                              natrium: "20",
-                              kalium: "20",
-                              mangan: "20",
-                              tembaga: "20",
-                              kromium: "20",
-                              besi: "20",
-                              iodium: "20",
-                              seng: "20",
-                              selenium: "20",
-                              fluor: "20"),
+                            vitA: state.product.vitA.toString(),
+                            vitD: state.product.vitD.toString(),
+                            vitE: state.product.vitE.toString(),
+                            vitK: state.product.vitK.toString(),
+                            vitB1: state.product.vitB1.toString(),
+                            vitB2: state.product.vitB2.toString(),
+                            vitB3: state.product.vitB3.toString(),
+                            vitB5: state.product.vitB5.toString(),
+                            vitB6: state.product.vitB6.toString(),
+                            folat: state.product.folat.toString(),
+                            vitB12: state.product.vitB12.toString(),
+                            biotin: state.product.biotin.toString(),
+                            kolin: state.product.kolin.toString(),
+                            vitC: state.product.vitC.toString(),
+                            kalsium: state.product.kalsium.toString(),
+                            fosfor: state.product.fosfor.toString(),
+                            magnesium: state.product.magnesium.toString(),
+                            natrium: state.product.natrium.toString(),
+                            kalium: state.product.kalium.toString(),
+                            mangan: state.product.mangan.toString(),
+                            tembaga: state.product.tembaga.toString(),
+                            kromium: state.product.kromium.toString(),
+                            besi: state.product.besi.toString(),
+                            iodium: state.product.iodium.toString(),
+                            seng: state.product.seng.toString(),
+                            selenium: state.product.selenium.toString(),
+                            fluor: state.product.fluor.toString(),
+                          ),
                           Divider(),
                           const SizedBox(
                             height: 20,

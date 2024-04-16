@@ -65,12 +65,8 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   void dispose() {
-    // Hentikan streaming gambar dari kamera
     controller.stopImageStream();
-
-    // Hentikan scanner barcode
     barcodeScanner.close();
-
     super.dispose();
   }
 
@@ -125,8 +121,7 @@ class _ScanPageState extends State<ScanPage> {
       }
     }
 
-    if (!mounted)
-      return; // Check if the widget is still mounted before calling setState
+    if (!mounted) return;
     setState(() {
       isBusy = false;
     });
@@ -201,6 +196,8 @@ class _ScanPageState extends State<ScanPage> {
                     showCustomSnackbar(context, state.e);
                   }
                   if (state is ScanProductSuccess) {
+                    controller.stopImageStream();
+                    barcodeScanner.close();
                     Navigator.pushNamed(context, '/product-show');
                   }
                 },
