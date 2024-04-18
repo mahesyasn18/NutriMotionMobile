@@ -65,7 +65,6 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   void dispose() {
-    controller.stopImageStream();
     barcodeScanner.close();
     super.dispose();
   }

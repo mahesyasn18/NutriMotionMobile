@@ -7,6 +7,9 @@ import 'package:nutrimotion/ui/pages/home_page.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
 import 'package:nutrimotion/ui/pages/onboarding_page.dart';
 import 'package:nutrimotion/ui/pages/product_page.dart';
+import 'package:nutrimotion/ui/pages/profilePart/edit_data_personal.dart';
+import 'package:nutrimotion/ui/pages/profilePart/edit_password.dart';
+import 'package:nutrimotion/ui/pages/profilePart/edit_profile.dart';
 import 'package:nutrimotion/ui/pages/scan_page.dart';
 import 'package:nutrimotion/ui/pages/signin_page.dart';
 import 'package:nutrimotion/ui/pages/signup_page.dart';
@@ -61,6 +64,9 @@ class MyApp extends StatelessWidget {
           '/home-page': (context) => HomePage(),
           '/scan-page': (context) => ScanPage(),
           '/product-show': (context) => ProductPage(),
+          '/edit-profile': (context) => EditProfile(),
+          '/edit-password': (context) => EditPassword(),
+          '/edit-data-personal': (context) => EditDataPersonal(),
         },
       ),
     );

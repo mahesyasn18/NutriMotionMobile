@@ -9,6 +9,7 @@ Color whiteColor = const Color(0xffFFFFFF);
 Color blackSecondaryColor = Color.fromRGBO(26, 23, 23, 1).withOpacity(0.6);
 Color grayColor = const Color(0xffA6A9AB);
 Color redColor = const Color(0xffFF2566);
+Color greenColorsecond = Color.fromARGB(255, 243, 252, 245);
 
 TextStyle blackPoppinsTextStyle = GoogleFonts.poppins(
   color: blackColor,
