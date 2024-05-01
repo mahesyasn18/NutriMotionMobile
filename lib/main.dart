@@ -3,6 +3,9 @@ import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
 import 'package:nutrimotion/shared/theme.dart';
+import 'package:nutrimotion/ui/pages/add_food_page.dart';
+import 'package:nutrimotion/ui/pages/add_new_food_page.dart';
+import 'package:nutrimotion/ui/pages/browse_food_page.dart';
 import 'package:nutrimotion/ui/pages/home_page.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
 import 'package:nutrimotion/ui/pages/onboarding_page.dart';
@@ -10,6 +13,7 @@ import 'package:nutrimotion/ui/pages/product_page.dart';
 import 'package:nutrimotion/ui/pages/profilePart/edit_data_personal.dart';
 import 'package:nutrimotion/ui/pages/profilePart/edit_password.dart';
 import 'package:nutrimotion/ui/pages/profilePart/edit_profile.dart';
+import 'package:nutrimotion/ui/pages/record_heavy_foods_page.dart';
 import 'package:nutrimotion/ui/pages/scan_page.dart';
 import 'package:nutrimotion/ui/pages/signin_page.dart';
 import 'package:nutrimotion/ui/pages/signup_page.dart';
@@ -67,6 +71,10 @@ class MyApp extends StatelessWidget {
           '/edit-profile': (context) => EditProfile(),
           '/edit-password': (context) => EditPassword(),
           '/edit-data-personal': (context) => EditDataPersonal(),
+          '/record-food-page': (context) => RecordHeavyFoodsPage(),
+          '/browse-food': (context) => BrowseFoodPage(),
+          '/add-food' : (context) => AddFoodPage(),
+          '/add-new-food' : (context) => AddNewFoodPage(),
         },
       ),
     );
