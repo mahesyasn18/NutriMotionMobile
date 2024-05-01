@@ -54,7 +54,6 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: blackSecondaryColor,
         onTap: (value) {
           setState(() {
-            print(value);
             currentIndex = value;
           });
         },

@@ -37,3 +37,30 @@ class AuthLogin extends AuthEvent {
 class AuthLogout extends AuthEvent {}
 
 class AuthGetCurrentUser extends AuthEvent {}
+
+class AuthUpdateUser extends AuthEvent {
+  final ProfileUserEditFormModel data;
+  const AuthUpdateUser(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [data];
+}
+
+class AuthUpdatePersonalDataUser extends AuthEvent {
+  final ProfileDataPersonalEditFormModel data;
+  const AuthUpdatePersonalDataUser(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [data];
+}
+
+class AuthUpdatePasswordUser extends AuthEvent {
+  final PasswordEditFormModel data;
+  const AuthUpdatePasswordUser(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [data];
+}

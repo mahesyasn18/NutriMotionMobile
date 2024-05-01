@@ -39,13 +39,8 @@ class AuthService {
 
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
-        user = user.copywith(
-          email: data.email,
-          password: data.password,
-        );
-
+        user = user.copywith(password: data.password);
         await storeCredentialToLocal(user);
-
         return user;
       } else {
         throw jsonDecode(res.body)['message'];
@@ -63,11 +58,7 @@ class AuthService {
       );
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
-        user = user.copywith(
-          email: data.email,
-          password: data.password,
-        );
-
+        user = user.copywith(password: data.password);
         await storeCredentialToLocal(user);
 
         return user;
@@ -85,8 +76,36 @@ class AuthService {
       await storage.write(key: 'token', value: user.token);
       await storage.write(key: 'email', value: user.email);
       await storage.write(key: 'password', value: user.password);
-      print(
-          'email: ${user.email}\npassword: ${user.password}\ntoken: ${user.token}');
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updateEmailInLocal(String newEmail) async {
+    try {
+      const storage = FlutterSecureStorage();
+      // Baca token dan password yang sudah ada
+      String? token = await storage.read(key: 'token');
+      String? password = await storage.read(key: 'password');
+      // Tulis kembali token, password, dan email baru ke penyimpanan lokal
+      await storage.write(key: 'token', value: token);
+      await storage.write(key: 'password', value: password);
+      await storage.write(key: 'email', value: newEmail);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updatePasswordInLocal(String newPassword) async {
+    try {
+      const storage = FlutterSecureStorage();
+      // Baca token dan password yang sudah ada
+      String? token = await storage.read(key: 'token');
+      String? email = await storage.read(key: 'email');
+      // Tulis kembali token, password, dan email baru ke penyimpanan lokal
+      await storage.write(key: 'token', value: token);
+      await storage.write(key: 'password', value: newPassword);
+      await storage.write(key: 'email', value: email);
     } catch (e) {
       rethrow;
     }
@@ -96,7 +115,7 @@ class AuthService {
     try {
       const storage = FlutterSecureStorage();
       Map<String, String> values = await storage.readAll();
-
+      print(values['email']);
       if (values['email'] == null || values['password'] == null) {
         throw 'authenticated';
       } else {
@@ -146,6 +165,15 @@ class AuthService {
       } else {
         throw jsonDecode(res.body)['message'];
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updateEmailInLocalStorage(String newEmail) async {
+    try {
+      const storage = FlutterSecureStorage();
+      await storage.write(key: 'email', value: newEmail);
     } catch (e) {
       rethrow;
     }

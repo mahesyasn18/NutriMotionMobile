@@ -1,2 +1,2 @@
-String baseUrl = 'https://81e3-180-244-138-90.ngrok-free.app/api';
-String baseUrls = 'https://81e3-180-244-138-90.ngrok-free.app';
+String baseUrl = 'https://710f-180-244-139-82.ngrok-free.app/api';
+String baseUrls = 'https://710f-180-244-139-82.ngrok-free.app';

@@ -21,7 +21,6 @@ class ScanService {
           });
 
       if (res.statusCode == 200) {
-        print(res.body);
         return ScansModel.fromJson(jsonDecode(res.body));
       } else {
         throw Exception('Failed to check barcode: ${res.statusCode}');
@@ -46,7 +45,6 @@ class ScanService {
           });
 
       if (res.statusCode == 200) {
-        print(res.body);
         return ProductModel.fromJson(jsonDecode(res.body));
       } else {
         throw Exception('Failed to check barcode: ${res.statusCode}');

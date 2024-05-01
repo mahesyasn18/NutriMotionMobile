@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
+import 'package:nutrimotion/models/data_personal_edit_form_model.dart';
+import 'package:nutrimotion/shared/shared_methods.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_button.dart';
 import 'package:nutrimotion/ui/widgets/custom_form.dart';
@@ -14,6 +18,20 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
   String? gender;
   DateTime? selectedDate;
 
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  bool validate() {
+    if (genderController.text.isEmpty ||
+        dateController.text.isEmpty ||
+        weightController.text.isEmpty ||
+        heightController.text.isEmpty) {
+      return false;
+    }
+    return true;
+  }
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -24,7 +42,28 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        dateController.text = selectedDate!.toString().substring(0, 10);
       });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final authState = context.read<AuthBloc>().state;
+    if (authState is AuthSuccess) {
+      setState(() {
+        gender = authState
+            .user.gender; // Atur nilai gender dari objek user dalam AuthSuccess
+        selectedDate = DateTime.parse(authState.user.birthday
+            .toString()); // Atur nilai selectedDate dari objek user dalam AuthSuccess
+        // Atur nilai lainnya seperti weight dan height jika perlu
+      });
+      // Set text pada controller sesuai dengan nilai yang didapatkan
+      genderController.text = gender!;
+      dateController.text = selectedDate!.toString().substring(0, 10);
+      weightController.text = authState.user.weight.toString();
+      heightController.text = authState.user.height.toString();
     }
   }
 
@@ -36,95 +75,132 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
           title: const Text('Data Personal'),
           backgroundColor: whiteColor,
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 27),
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Image.asset(
-                'assets/regis.gif',
-                height: 300,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Jenis Kelamin',
-                  style: blackPoppinsTextStyle.copyWith(
-                    fontWeight: semiBold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              Row(
+        body: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthFailed) {
+              showCustomSnackbar(context, state.e);
+            }
+
+            if (state is AuthSuccess) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/success-update-profile', (route) => false);
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 27),
+              child: ListView(
                 children: [
-                  Expanded(
-                    child: RadioListTile(
-                      title: Text('Laki-laki'),
-                      value: 'Laki-laki',
-                      groupValue: gender,
-                      onChanged: (value) {
-                        setState(() {
-                          gender = value as String?;
-                        });
-                      },
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Image.asset(
+                    'assets/regis.gif',
+                    height: 300,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Jenis Kelamin',
+                      style: blackPoppinsTextStyle.copyWith(
+                        fontWeight: semiBold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                  Expanded(
-                    child: RadioListTile(
-                      title: Text('Perempuan'),
-                      value: 'Perempuan',
-                      groupValue: gender,
-                      onChanged: (value) {
-                        setState(() {
-                          gender = value as String?;
-                        });
-                      },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: RadioListTile(
+                          title: Text('Laki-laki'),
+                          value: 'Laki-laki',
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value as String?;
+                            });
+                            genderController.text = value.toString();
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: RadioListTile(
+                          title: Text('Perempuan'),
+                          value: 'Perempuan',
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value as String?;
+                            });
+                            genderController.text = value.toString();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Tanggal Lahir',
+                      style: blackPoppinsTextStyle.copyWith(
+                        fontWeight: semiBold,
+                        fontSize: 16,
+                      ),
                     ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _selectDate(context),
+                    child: Text(selectedDate != null
+                        ? 'Tanggal dipilih: ${selectedDate.toString().substring(0, 10)}'
+                        : 'Pilih Tanggal'),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomFormField(
+                    title: 'Berat Badan',
+                    controller: weightController,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomFormField(
+                    title: 'Tinggi Badan',
+                    controller: heightController,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  CustomFilledButton(
+                    title: 'Update Profile',
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                            AuthUpdatePersonalDataUser(
+                              ProfileDataPersonalEditFormModel(
+                                birthday: dateController.text,
+                                gender: genderController.text,
+                                height: heightController.text,
+                                weight: weightController.text,
+                              ),
+                            ),
+                          );
+                    },
+                  ),
+                  const SizedBox(
+                    height: 30,
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Tanggal Lahir',
-                  style: blackPoppinsTextStyle.copyWith(
-                    fontWeight: semiBold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () => _selectDate(context),
-                child: Text(selectedDate != null
-                    ? 'Tanggal dipilih: ${selectedDate.toString().substring(0, 10)}'
-                    : 'Pilih Tanggal'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomFormField(
-                title: 'Berat Badan',
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomFormField(
-                title: 'Tinggi Badan',
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomFilledButton(title: 'Update Password'),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
-          ),
+            );
+          },
         ));
   }
 }
