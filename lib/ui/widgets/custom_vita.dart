@@ -106,7 +106,7 @@ class CustomVita extends StatelessWidget {
             style: blackPoppinsTextStyle,
           ),
           Text(
-            nutrientValue + " %",
+            "$nutrientValue %",
             style: blackPoppinsTextStyle,
           ),
         ],

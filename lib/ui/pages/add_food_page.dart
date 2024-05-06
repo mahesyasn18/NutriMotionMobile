@@ -225,7 +225,7 @@ class _AddFoodPageState extends State<AddFoodPage> {
                     Navigator.pushNamed(context, '/home-page');
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 24),
+                    margin: const EdgeInsets.symmetric(vertical: 24),
                     width: 376,
                     height: 56,
                     alignment: Alignment.center,

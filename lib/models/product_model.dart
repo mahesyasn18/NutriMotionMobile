@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ProductModel {
   final int? id;
   final String? brand;

@@ -47,10 +47,10 @@ class ProfilePage extends StatelessWidget {
               Animation<double> secondaryAnimation,
             ) {
               return SharedAxisTransition(
-                child: child,
                 animation: animation,
                 secondaryAnimation: secondaryAnimation,
                 transitionType: SharedAxisTransitionType.horizontal,
+                child: child,
               );
             },
             child: _buildContent(context, state),

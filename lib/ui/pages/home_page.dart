@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget body() {
     switch (currentIndex) {
       case 0:
-        return HomeMainPage();
+        return const HomeMainPage();
       case 1:
         return const ActivityPage();
       case 2:
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       case 3:
         return const ProfilePage();
       default:
-        return HomeMainPage();
+        return const HomeMainPage();
     }
   }
 

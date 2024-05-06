@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_activity_tile.dart';
-import 'package:nutrimotion/ui/widgets/custom_button.dart';
 import 'package:nutrimotion/ui/widgets/custom_form.dart';
 
 class CreateActivityPage extends StatelessWidget {
@@ -17,11 +16,11 @@ class CreateActivityPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(left: 15, right: 15, top: 15),
+        margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
         child: ListView(
           children: [
-            CustomSearchFormField(hints: 'Cari Kegiatan'),
-            SizedBox(
+            const CustomSearchFormField(hints: 'Cari Kegiatan'),
+            const SizedBox(
               height: 16,
             ),
             const SizedBox(
@@ -42,7 +41,7 @@ class CreateActivityPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/create-activity-new');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
             CustomActivityTile(
@@ -52,7 +51,7 @@ class CreateActivityPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/create-activity-new');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
             CustomActivityTile(
@@ -62,7 +61,7 @@ class CreateActivityPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/create-activity-new');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 18,
             ),
           ],

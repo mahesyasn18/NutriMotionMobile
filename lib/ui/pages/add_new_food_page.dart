@@ -27,13 +27,12 @@ class _AddNewFoodPageState extends State<AddNewFoodPage> {
         title: Text(
           'Tambah Makanan Baru',
           style: blackPoppinsTextStyle.copyWith(
-            fontSize: 17, fontWeight: semiBold
-          ),
+              fontSize: 17, fontWeight: semiBold),
         ),
         backgroundColor: whiteColor,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+        margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
         child: ListView(
           children: [
             CustomFormField(
@@ -41,12 +40,11 @@ class _AddNewFoodPageState extends State<AddNewFoodPage> {
               controller: foodNameController,
             ),
             Container(
-              margin: EdgeInsets.only(top: 24, bottom: 16),
+              margin: const EdgeInsets.only(top: 24, bottom: 16),
               child: Text(
                 'Informasi Nutrisi',
                 style: blackPoppinsTextStyle.copyWith(
-                  fontSize: 20, fontWeight: semiBold
-                ),
+                    fontSize: 20, fontWeight: semiBold),
               ),
             ),
             CustomFormField(
@@ -90,12 +88,9 @@ class _AddNewFoodPageState extends State<AddNewFoodPage> {
                   color: greenColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Text(
-                  'Simpan',
-                  style: whitePoppinsTextStyle.copyWith(
-                    fontSize: 16, fontWeight: bold
-                  )
-                ),
+                child: Text('Simpan',
+                    style: whitePoppinsTextStyle.copyWith(
+                        fontSize: 16, fontWeight: bold)),
               ),
             ),
           ],

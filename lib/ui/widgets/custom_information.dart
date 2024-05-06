@@ -25,12 +25,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              lemakTotal + " g",
+              "$lemakTotal g",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -39,12 +39,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              lemakJenuh + " g",
+              "$lemakJenuh g",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -53,12 +53,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              protein + " g",
+              "$protein g",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -67,12 +67,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              karbohidratTotal + " g",
+              "$karbohidratTotal g",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -81,12 +81,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              gula + " g",
+              "$gula g",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -95,12 +95,12 @@ class CustomInformation extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
             Text(
-              garam + " mg",
+              "$garam mg",
               style: blackPoppinsTextStyle.copyWith(fontSize: 16),
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }

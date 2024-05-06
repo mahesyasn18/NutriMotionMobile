@@ -43,7 +43,7 @@ class ProfileMenuItem extends StatelessWidget {
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Text(

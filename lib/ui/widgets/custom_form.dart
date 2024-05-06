@@ -62,11 +62,11 @@ class CustomSearchFormField extends StatelessWidget {
   final TextEditingController? controller;
 
   const CustomSearchFormField({
-    Key? key,
+    super.key,
     required this.hints,
     this.obsecureText = false,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,8 @@ class CustomSearchFormField extends StatelessWidget {
           obscureText: obsecureText,
           controller: controller,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -96,7 +97,7 @@ class CustomSearchFormField extends StatelessWidget {
             ),
             hintText: hints,
             prefixIcon: Padding(
-              padding: EdgeInsets.all(14),
+              padding: const EdgeInsets.all(14),
               child: Image.asset(
                 'assets/ic_search.png',
                 width: 25,
@@ -115,11 +116,11 @@ class CustomFormDigitField extends StatelessWidget {
   final TextEditingController? controller;
 
   const CustomFormDigitField({
-    Key? key,
+    super.key,
     required this.title,
     this.obscureText = false,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -128,12 +129,12 @@ class CustomFormDigitField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         TextFormField(
@@ -147,13 +148,13 @@ class CustomFormDigitField extends StatelessWidget {
             LengthLimitingTextInputFormatter(3), // Limit input to 3 characters
           ],
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(12),
+            contentPadding: const EdgeInsets.all(12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.green,
               ),
             ),
@@ -165,7 +166,7 @@ class CustomFormDigitField extends StatelessWidget {
               ),
             ),
             suffixText: 'dalam menit', // Add suffix text
-            suffixStyle: TextStyle(
+            suffixStyle: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.normal,
             ),
@@ -176,6 +177,7 @@ class CustomFormDigitField extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class customEnteredFormField extends StatelessWidget {
   final String title;
   final bool obscureText;
@@ -183,12 +185,12 @@ class customEnteredFormField extends StatelessWidget {
   final bool enabled;
 
   const customEnteredFormField({
-    Key? key,
+    super.key,
     required this.title,
     this.obscureText = false,
     this.controller,
     this.enabled = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -197,12 +199,12 @@ class customEnteredFormField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         TextFormField(

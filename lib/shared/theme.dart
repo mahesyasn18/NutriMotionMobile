@@ -21,6 +21,7 @@ Color redDotColor = const Color(0xffF24E1E);
 Color greenDotColor = const Color(0xff1EF273);
 Color yellowDotColor = const Color(0xffF2AA1E);
 Color blueDotColor = const Color(0xff16649B);
+Color brownColor = const Color(0xffD4AE64);
 
 TextStyle blackPoppinsTextStyle = GoogleFonts.poppins(
   color: blackColor,
@@ -32,6 +33,10 @@ TextStyle subtitleGrayPoppinsTextStyle = GoogleFonts.poppins(
 
 TextStyle greenPoppinsTextStyle = GoogleFonts.poppins(
   color: greenColor,
+);
+
+TextStyle secondaryGreenPoppinsTextStyle = GoogleFonts.poppins(
+  color: secondaryGreenColor,
 );
 
 TextStyle darkGreenPoppinsPrimaryTextStyle = GoogleFonts.poppins(

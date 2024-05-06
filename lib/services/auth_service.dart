@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:nutrimotion/models/sign_in_form_model.dart';
@@ -115,7 +114,7 @@ class AuthService {
     try {
       const storage = FlutterSecureStorage();
       Map<String, String> values = await storage.readAll();
-      print(values['email']);
+
       if (values['email'] == null || values['password'] == null) {
         throw 'authenticated';
       } else {
@@ -137,7 +136,7 @@ class AuthService {
     String? value = await storage.read(key: 'token');
 
     if (value != null) {
-      token = 'Bearer ' + value;
+      token = 'Bearer $value';
     }
 
     return token;

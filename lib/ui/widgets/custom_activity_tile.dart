@@ -13,17 +13,17 @@ class CustomActivityTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 17),
+        padding: const EdgeInsets.symmetric(horizontal: 17),
         height: 85,
         decoration: BoxDecoration(
-          color: Color(0xffF7FFE9),
+          color: const Color(0xffF7FFE9),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -33,7 +33,7 @@ class CustomActivityTile extends StatelessWidget {
               iconUrl,
               width: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 13,
             ),
             Text(

@@ -58,34 +58,34 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is AuthFailed) {
-            showCustomSnackbar(context, state.e);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
+      listener: (context, state) {
+        if (state is AuthFailed) {
+          showCustomSnackbar(context, state.e);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: whiteColor,
+          appBar: AppBar(
+            title: const Text('Pilih Asupan Hari Ini'),
             backgroundColor: whiteColor,
-            appBar: AppBar(
-              title: const Text('Pilih Asupan Hari Ini'),
-              backgroundColor: whiteColor,
-            ),
-            body: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 15),
-                    child: CustomSearchFormField(
-                        hints: 'Cari Makanan',
-                        controller: searchController,
-                      ),
+          ),
+          body: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 15),
+                  child: CustomSearchFormField(
+                    hints: 'Cari Makanan',
+                    controller: searchController,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/add-new-food');
-                    },
-                    child: Container(
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/add-new-food');
+                  },
+                  child: Container(
                     height: 56,
                     width: 376,
                     alignment: Alignment.center,
@@ -96,45 +96,44 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
                     child: Text(
                       'Tambah Makanan Baru',
                       style: whitePoppinsTextStyle.copyWith(
-                        fontSize: 16, fontWeight: bold
-                      ),
+                          fontSize: 16, fontWeight: bold),
                     ),
                   ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Daftar Makanan dan Minuman',
-                      style: blackPoppinsTextStyle.copyWith(
-                        fontSize: 17, fontWeight: semiBold,
-                      ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Daftar Makanan dan Minuman',
+                    style: blackPoppinsTextStyle.copyWith(
+                      fontSize: 17,
+                      fontWeight: semiBold,
                     ),
                   ),
-                  Expanded(
-                    child: ListView(
-                      children: foodDict.map((food) {
-                        return Container(
+                ),
+                Expanded(
+                  child: ListView(
+                    children: foodDict.map((food) {
+                      return Container(
                           margin: const EdgeInsets.symmetric(vertical: 12),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, '/add-food');
                             },
                             child: CustomFoodTile(
-                              foodName: food['nama'].toString(), 
+                              foodName: food['nama'].toString(),
                               foodCal: food['kalori'],
                               foodSize: food['size'],
                             ),
-                          )
-                        );
-                      }).toList(),
-                    ),
-                  )
-                ],
-              ),
+                          ));
+                    }).toList(),
+                  ),
+                )
+              ],
             ),
-          );
-        },
-    );    
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,29 +1,56 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:nutrimotion/shared/theme.dart';
 
-class HalfCircularFillGauge extends StatelessWidget {
+class HalfCircularFillGauge extends StatefulWidget {
   final double value; // Nilai dari fill gauge (0.0 - 1.0)
-  final Color fillColor; // Warna fill gauge
-  final Color backgroundColor; // Warna fill gauge kosong
+  final Color color;
   final double strokeWidth; // Ketebalan garis
+  final String? text;
 
   const HalfCircularFillGauge({
     Key? key,
     required this.value,
-    required this.fillColor,
-    required this.backgroundColor,
+    required this.color,
+    this.text,
     this.strokeWidth = 8.0,
   }) : super(key: key);
 
   @override
+  State<HalfCircularFillGauge> createState() => _HalfCircularFillGaugeState();
+}
+
+class _HalfCircularFillGaugeState extends State<HalfCircularFillGauge>
+    with SingleTickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(150, 100), // Sesuaikan dengan ukuran yang diinginkan
-      painter: HalfCircularFillGaugePainter(
-        value: value,
-        fillColor: fillColor,
-        backgroundColor: backgroundColor,
-        strokeWidth: strokeWidth,
+    return Container(
+      child: Stack(
+        children: [
+          CustomPaint(
+            size:
+                const Size(150, 150), // Sesuaikan dengan ukuran yang diinginkan
+            painter: HalfCircularFillGaugePainter(
+                value: widget.value,
+                color: widget.color,
+                strokeWidth: widget.strokeWidth),
+          ),
+          (widget.text != null)
+              ? Positioned(
+                  top: 30,
+                  left: 55,
+                  child: Column(
+                    children: [
+                      Text('${widget.text}',
+                          style: whitePoppinsTextStyle.copyWith(
+                              fontSize: 24, fontWeight: regular)),
+                      Text('KCAL',
+                          style: secondaryGreenPoppinsTextStyle.copyWith(
+                              fontSize: 16, fontWeight: semiBold)),
+                    ],
+                  ))
+              : Container()
+        ],
       ),
     );
   }
@@ -31,58 +58,39 @@ class HalfCircularFillGauge extends StatelessWidget {
 
 class HalfCircularFillGaugePainter extends CustomPainter {
   final double value;
-  final Color fillColor;
-  final Color backgroundColor;
+  final Color color;
   final double strokeWidth;
 
   HalfCircularFillGaugePainter({
     required this.value,
-    required this.fillColor,
-    required this.backgroundColor,
+    required this.color,
     required this.strokeWidth,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint fillPaint = Paint()
-      ..color = fillColor
+    const rect = Rect.fromLTRB(0, 0, 150, 150);
+    Paint gaugeColor = Paint()
+      ..color = color
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    Paint backgroundPaint = Paint()
-      ..color = backgroundColor
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    double radius = math.min(size.width, size.height) / 2;
-    Offset center = Offset(size.width / 2, size.height);
+    double startAngle = -math.pi;
+    double sweepAngle = value ?? math.pi;
 
     // Gambar lingkaran setengah dengan fill gauge kosong
     canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius),
-      math.pi,
-      math.pi,
-      false,
-      backgroundPaint,
-    );
-
-    // Gambar fill gauge berdasarkan nilai yang diberikan
-    double sweepAngle = math.pi * value;
-    canvas.drawArc(
-      Rect.fromCircle(center: center, radius: radius),
-      math.pi,
+      rect,
+      startAngle,
       sweepAngle,
       false,
-      fillPaint,
+      gaugeColor,
     );
   }
 
   @override
   bool shouldRepaint(HalfCircularFillGaugePainter oldDelegate) {
-    return oldDelegate.value != value ||
-        oldDelegate.fillColor != fillColor ||
-        oldDelegate.backgroundColor != backgroundColor;
+    return true;
   }
 }

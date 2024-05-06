@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/shared/theme.dart';
@@ -65,7 +64,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             right: 0,
             child: Container(
               height: 288,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(54),
@@ -121,7 +120,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        CustomTextButton(
+                        const CustomTextButton(
                           title: 'Skip',
                           width: 185,
                           height: 40,

@@ -22,7 +22,7 @@ class ActivityNowTile extends StatelessWidget {
           iconUrl,
           width: 50,
         ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Expanded(
@@ -37,26 +37,26 @@ class ActivityNowTile extends StatelessWidget {
                   fontWeight: semiBold,
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   Image.asset(
                     'assets/ic_clock.png',
                     width: 15,
                   ),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
                     playDate,
                     style: subtitleGrayPoppinsTextStyle,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Image.asset(
                         'assets/ic_clock.png',
                         width: 15,
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Text(
                         duration,
                         style: subtitleGrayPoppinsTextStyle,

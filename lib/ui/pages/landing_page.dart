@@ -36,7 +36,7 @@ class LandingPage extends StatelessWidget {
               width: 365,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 36,
           ),
           Center(
@@ -46,7 +46,7 @@ class LandingPage extends StatelessWidget {
               style: blackPoppinsTextStyle.copyWith(fontSize: 22),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           Padding(

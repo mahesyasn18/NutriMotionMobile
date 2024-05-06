@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nutrimotion/shared/theme.dart';
 
 class WaterPage extends StatefulWidget {
-  const WaterPage({Key? key}) : super(key: key);
+  const WaterPage({super.key});
 
   @override
   _WaterPageState createState() => _WaterPageState();
@@ -75,7 +75,7 @@ class _WaterPageState extends State<WaterPage> {
                   child: Column(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 80,
                         height: 120,
                         decoration: BoxDecoration(
@@ -115,7 +115,7 @@ class _WaterPageState extends State<WaterPage> {
                   child: Column(
                     children: [
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         width: 80,
                         height: 120,
                         decoration: BoxDecoration(

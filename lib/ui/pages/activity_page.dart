@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/activity_now_tile.dart';

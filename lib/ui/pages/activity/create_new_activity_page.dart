@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/widgets/custom_button.dart';
 import 'package:nutrimotion/ui/widgets/custom_form.dart';
@@ -39,10 +38,10 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 26),
+        padding: const EdgeInsets.symmetric(horizontal: 26),
         child: ListView(
           children: [
-            customEnteredFormField(title: 'Jenis Aktivitas'),
+            const customEnteredFormField(title: 'Jenis Aktivitas'),
             const SizedBox(
               height: 20,
             ),
@@ -53,7 +52,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                 fontSize: 16,
               ),
             ),
-            Container(
+            SizedBox(
               height: 140,
               child: Column(
                 children: [
@@ -93,7 +92,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                 ],
               ),
             ),
-            CustomFormDigitField(title: 'Durasi'),
+            const CustomFormDigitField(title: 'Durasi'),
             const SizedBox(
               height: 20,
             ),
@@ -111,7 +110,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                   style: blackPoppinsTextStyle.copyWith(
                       fontWeight: semiBold, fontSize: 18),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 Expanded(
@@ -132,15 +131,15 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                         foregroundColor: greenColor,
                         backgroundColor: whiteColor,
                         side: BorderSide(color: greenColor)),
-                    child: Text('Pilih Waktu'),
+                    child: const Text('Pilih Waktu'),
                   ),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            CustomFilledButton(title: 'Simpan')
+            const CustomFilledButton(title: 'Simpan')
           ],
         ),
       ),

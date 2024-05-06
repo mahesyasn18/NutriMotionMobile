@@ -11,12 +11,12 @@ class Gender {
 class CustomRadio extends StatelessWidget {
   Gender _gender;
 
-  CustomRadio(this._gender);
+  CustomRadio(this._gender, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: _gender.isSelected ? Color(0xFF3B4257) : Colors.white,
+        color: _gender.isSelected ? const Color(0xFF3B4257) : Colors.white,
         child: Container(
           height: 80,
           width: 80,
@@ -31,7 +31,7 @@ class CustomRadio extends StatelessWidget {
                 color: _gender.isSelected ? Colors.white : Colors.grey,
                 size: 40,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 _gender.name,
                 style: TextStyle(
