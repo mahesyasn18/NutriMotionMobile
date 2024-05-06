@@ -52,6 +52,8 @@ class ProfileMenuItem extends StatelessWidget {
                         fontWeight: medium,
                         fontSize: 14,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1, // Ganti angka ini sesuai kebutuhan Anda
                     ),
                   ],
                 ),

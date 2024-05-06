@@ -5,7 +5,7 @@ class ProductModel {
   final String? picture;
   final String? foodType;
   final String? foodCategory;
-  final String? size;
+  final int? size;
   final String? barcodeNumber;
   final int? kalori;
   final int? lemakTotal;

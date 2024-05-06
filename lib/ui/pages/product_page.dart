@@ -168,7 +168,7 @@ class _ProductPageState extends State<ProductPage>
                                   ),
                                 ),
                                 Text(
-                                  "${state.product.size} ml",
+                                  "${state.product.size.toString()} ml",
                                   style: blackPoppinsTextStyle.copyWith(
                                     fontSize: 16,
                                   ),

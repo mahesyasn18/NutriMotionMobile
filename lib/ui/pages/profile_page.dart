@@ -107,8 +107,7 @@ class ProfilePage extends StatelessWidget {
     if (state is AuthSuccess) {
       return Container(
         margin: const EdgeInsets.symmetric(horizontal: 34, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             GestureDetector(
               onTap: () {
