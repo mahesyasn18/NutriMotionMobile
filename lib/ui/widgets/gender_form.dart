@@ -21,7 +21,7 @@ class CustomRadio extends StatelessWidget {
           height: 80,
           width: 80,
           alignment: Alignment.center,
-          margin: new EdgeInsets.all(5.0),
+          margin: const EdgeInsets.all(5.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
