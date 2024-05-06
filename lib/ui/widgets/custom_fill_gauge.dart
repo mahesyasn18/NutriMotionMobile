@@ -77,7 +77,7 @@ class HalfCircularFillGaugePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     double startAngle = -math.pi;
-    double sweepAngle = value ?? math.pi;
+    double sweepAngle = value;
 
     // Gambar lingkaran setengah dengan fill gauge kosong
     canvas.drawArc(

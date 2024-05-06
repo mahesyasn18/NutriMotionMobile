@@ -64,7 +64,7 @@ class _FirstPageState extends State<FirstPage> {
                       groupValue: gender,
                       onChanged: (value) {
                         setState(() {
-                          gender = value as String?;
+                          gender = value;
                         });
                         genderController.text = value.toString();
                       },
@@ -75,7 +75,7 @@ class _FirstPageState extends State<FirstPage> {
                       groupValue: gender,
                       onChanged: (value) {
                         setState(() {
-                          gender = value as String?;
+                          gender = value;
                         });
                         genderController.text = value.toString();
                       },

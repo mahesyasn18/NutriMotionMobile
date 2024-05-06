@@ -8,6 +8,7 @@ class Gender {
   Gender(this.name, this.icon, this.isSelected);
 }
 
+// ignore: must_be_immutable
 class CustomRadio extends StatelessWidget {
   Gender _gender;
 
