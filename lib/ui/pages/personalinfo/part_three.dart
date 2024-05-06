@@ -33,7 +33,7 @@ class _ThirdPageState extends State<ThirdPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: whiteColor,
-        title: Text('Data Personal'),
+        title: const Text('Data Personal'),
       ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -47,8 +47,46 @@ class _ThirdPageState extends State<ThirdPage> {
         },
         builder: (context, state) {
           if (state is AuthLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 100,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Nutri',
+                          style: greenPoppinsTextStyle.copyWith(
+                              fontSize: 36, fontWeight: black),
+                        ),
+                        TextSpan(
+                          text: 'Motion',
+                          style: blackPoppinsTextStyle.copyWith(
+                              fontSize: 36, fontWeight: extraBold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 55),
+                    child: LinearProgressIndicator(
+                      color: greenColor,
+                      minHeight: 20,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                ],
+              ),
             );
           }
           return SingleChildScrollView(
@@ -61,29 +99,29 @@ class _ThirdPageState extends State<ThirdPage> {
                     'assets/height.gif',
                     height: 300,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Berat Badan dan\nTinggi Badan saat ini',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomFormField(
                     title: 'Berat Badan',
                     controller: weightController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomFormField(
                     title: 'Tinggi Badan',
                     controller: heightController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomFilledButton(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animations/animations.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/activity_page.dart';
 import 'package:nutrimotion/ui/pages/home_main_page.dart';
@@ -6,7 +7,7 @@ import 'package:nutrimotion/ui/pages/profile_page.dart';
 import 'package:nutrimotion/ui/pages/water_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,37 +15,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
+
   Widget body() {
     switch (currentIndex) {
       case 0:
         return HomeMainPage();
-        break;
       case 1:
-        return ActivityPage();
-        break;
+        return const ActivityPage();
       case 2:
-        return WaterPage();
-        break;
+        return const WaterPage();
       case 3:
-        return ProfilePage();
-        break;
+        return const ProfilePage();
       default:
         return HomeMainPage();
-        break;
     }
   }
 
   Widget customButtonNavBar() {
     return BottomAppBar(
       elevation: 0,
-      color: Colors.white,
+      color: whiteColor,
       shape: const CircularNotchedRectangle(),
       clipBehavior: Clip.antiAlias,
       notchMargin: 6,
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: whiteColor,
         selectedLabelStyle: greenPoppinsTextStyle.copyWith(fontSize: 9),
         showSelectedLabels: true,
         currentIndex: currentIndex,
@@ -101,11 +98,11 @@ class _HomePageState extends State<HomePage> {
         Navigator.pushNamed(context, '/scan-page');
       },
       backgroundColor: Colors.green,
+      shape: const CircleBorder(),
       child: Image.asset(
         'assets/ic_scan.png',
         width: 30,
       ),
-      shape: CircleBorder(),
     );
   }
 
@@ -115,7 +112,16 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: scanMenu(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customButtonNavBar(),
-      body: body(),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (child, animation, secondaryAnimation) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+          );
+        },
+        child: body(),
+      ),
     );
   }
 }

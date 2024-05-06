@@ -9,7 +9,7 @@ import 'package:nutrimotion/ui/widgets/custom_button.dart';
 
 class FirstPage extends StatefulWidget {
   final SignUpFormModel data;
-  FirstPage({Key? key, required this.data}) : super(key: key);
+  const FirstPage({Key? key, required this.data}) : super(key: key);
 
   @override
   State<FirstPage> createState() => _FirstPageState();
@@ -37,7 +37,7 @@ class _FirstPageState extends State<FirstPage> {
         return Scaffold(
           backgroundColor: whiteColor,
           appBar: AppBar(
-            title: Text('Data Personal'),
+            title: const Text('Data Personal'),
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -50,8 +50,8 @@ class _FirstPageState extends State<FirstPage> {
                       'assets/gender.gif',
                       height: 300,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Jenis Kelamin',
                         style: TextStyle(
@@ -59,7 +59,7 @@ class _FirstPageState extends State<FirstPage> {
                       ),
                     ),
                     RadioListTile(
-                      title: Text('Laki-laki'),
+                      title: const Text('Laki-laki'),
                       value: 'Laki-laki',
                       groupValue: gender,
                       onChanged: (value) {
@@ -70,7 +70,7 @@ class _FirstPageState extends State<FirstPage> {
                       },
                     ),
                     RadioListTile(
-                      title: Text('Perempuan'),
+                      title: const Text('Perempuan'),
                       value: 'Perempuan',
                       groupValue: gender,
                       onChanged: (value) {
@@ -80,7 +80,7 @@ class _FirstPageState extends State<FirstPage> {
                         genderController.text = value.toString();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomFilledButton(

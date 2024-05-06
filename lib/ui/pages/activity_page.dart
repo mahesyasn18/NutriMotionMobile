@@ -14,7 +14,7 @@ class ActivityPage extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.14,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors
                   .green, // Move the color property inside the BoxDecoration
               borderRadius: BorderRadius.only(
@@ -26,7 +26,7 @@ class ActivityPage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Image.asset('assets/banner.png'),
@@ -67,8 +67,8 @@ class ActivityPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 31),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
                     ActivityNowTile(

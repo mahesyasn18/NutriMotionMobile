@@ -89,11 +89,49 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
           builder: (context, state) {
             if (state is AuthLoading) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/logo.png',
+                      width: 100,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Nutri',
+                            style: greenPoppinsTextStyle.copyWith(
+                                fontSize: 36, fontWeight: black),
+                          ),
+                          TextSpan(
+                            text: 'Motion',
+                            style: blackPoppinsTextStyle.copyWith(
+                                fontSize: 36, fontWeight: extraBold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 55),
+                      child: LinearProgressIndicator(
+                        color: greenColor,
+                        minHeight: 20,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ],
+                ),
               );
             }
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 27),
+              padding: const EdgeInsets.symmetric(horizontal: 27),
               child: ListView(
                 children: [
                   const SizedBox(
@@ -120,7 +158,7 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
                     children: [
                       Expanded(
                         child: RadioListTile(
-                          title: Text('Laki-laki'),
+                          title: const Text('Laki-laki'),
                           value: 'Laki-laki',
                           groupValue: gender,
                           onChanged: (value) {
@@ -133,7 +171,7 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
                       ),
                       Expanded(
                         child: RadioListTile(
-                          title: Text('Perempuan'),
+                          title: const Text('Perempuan'),
                           value: 'Perempuan',
                           groupValue: gender,
                           onChanged: (value) {
@@ -162,14 +200,14 @@ class _EditDataPersonalState extends State<EditDataPersonal> {
                         ? 'Tanggal dipilih: ${selectedDate.toString().substring(0, 10)}'
                         : 'Pilih Tanggal'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomFormField(
                     title: 'Berat Badan',
                     controller: weightController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CustomFormField(

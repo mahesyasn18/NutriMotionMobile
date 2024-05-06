@@ -49,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                       'assets/logo.png',
                       width: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     RichText(
@@ -68,7 +68,7 @@ class _SignInPageState extends State<SignInPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(

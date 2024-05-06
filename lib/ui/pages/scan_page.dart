@@ -12,7 +12,7 @@ import 'package:nutrimotion/shared/theme.dart';
 import '../../main.dart';
 
 class ScanPage extends StatefulWidget {
-  const ScanPage({Key? key}) : super(key: key);
+  const ScanPage({super.key});
 
   @override
   State<ScanPage> createState() => _ScanPageState();
@@ -53,10 +53,14 @@ class _ScanPageState extends State<ScanPage> {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
-            print('User denied camera access.');
+            if (kDebugMode) {
+              print('User denied camera access.');
+            }
             break;
           default:
-            print('Handle other errors.');
+            if (kDebugMode) {
+              print('Handle other errors.');
+            }
             break;
         }
       }
@@ -65,7 +69,6 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   void dispose() {
-    barcodeScanner.close();
     super.dispose();
   }
 
@@ -88,7 +91,9 @@ class _ScanPageState extends State<ScanPage> {
           final ScansModel product =
               await ScanService().checkBarcode(barcodeValue);
 
-          print(product.barcode_number.toString());
+          if (kDebugMode) {
+            print(product.barcode_number.toString());
+          }
           if (product.is_barcode_exist == true) {
             // If barcode exists, update the UI accordingly
             setState(() {
@@ -103,15 +108,15 @@ class _ScanPageState extends State<ScanPage> {
           }
         } catch (e) {
           // Handle any errors occurred during barcode checking
-          setState(() {
-            result = '';
-          });
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Terjadi kesalahan saat memeriksa barcode: $e'),
-              backgroundColor: Colors.red,
-            ),
-          );
+          if (mounted) {
+            setState(() {
+              result = '';
+            });
+            showCustomSnackbar(
+                context, 'Terjadi kesalahan saat memeriksa barcode: $e');
+          }
+
+          // ignore: use_build_context_synchronously
         }
       } else {
         setState(() {
@@ -170,18 +175,17 @@ class _ScanPageState extends State<ScanPage> {
     }
 
     // Calculate the height of the camera preview based on a 21:9 aspect ratio
-    final double aspectRatio = 9 / 16;
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan Page'),
+        title: const Text('Scan Page'),
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             width: screenWidth,
             height: screenHeight,
             child: CameraPreview(controller),
@@ -197,7 +201,7 @@ class _ScanPageState extends State<ScanPage> {
                   if (state is ScanProductSuccess) {
                     controller.stopImageStream();
                     barcodeScanner.close();
-                    Navigator.pushNamed(context, '/product-show');
+                    Navigator.pushReplacementNamed(context, '/product-show');
                   }
                 },
                 builder: (context, state) {
@@ -213,7 +217,7 @@ class _ScanPageState extends State<ScanPage> {
                             );
                       },
                       child: Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.7),
                           borderRadius: BorderRadius.circular(10),
@@ -229,15 +233,15 @@ class _ScanPageState extends State<ScanPage> {
                                       fontSize: 18, fontWeight: semiBold),
                                 ),
                                 Text(
-                                  'Code Product: ' + result,
-                                  style: TextStyle(
+                                  'Code Product: $result',
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
                                   ),
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 30,
                             ),
                             Image.asset(
@@ -258,12 +262,12 @@ class _ScanPageState extends State<ScanPage> {
               left: 20,
               bottom: 20,
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.red.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text(
+                child: const Text(
                   "Barcode tidak sesuai!",
                   style: TextStyle(
                     color: Colors.white,

@@ -45,7 +45,7 @@ class _SecondPageState extends State<SecondPage> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-        title: Text('Data Personal'),
+        title: const Text('Data Personal'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -57,8 +57,8 @@ class _SecondPageState extends State<SecondPage> {
                 'assets/date.gif',
                 height: 300,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Tanggal Lahir',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -70,7 +70,7 @@ class _SecondPageState extends State<SecondPage> {
                     ? 'Tanggal dipilih: ${selectedDate.toString().substring(0, 10)}'
                     : 'Pilih Tanggal'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               CustomFilledButton(

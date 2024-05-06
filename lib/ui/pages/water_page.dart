@@ -9,9 +9,8 @@ class WaterPage extends StatefulWidget {
 }
 
 class _WaterPageState extends State<WaterPage> {
-  int _totalGlassCount = 8;
   int _consumedGlassCount = 0;
-  List<bool> _glassStatus = List.generate(8, (index) => true);
+  final List<bool> _glassStatus = List.generate(8, (index) => true);
 
   void _emptyGlass(int index) {
     if (_glassStatus[index]) {
@@ -40,7 +39,7 @@ class _WaterPageState extends State<WaterPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Center(
@@ -62,7 +61,7 @@ class _WaterPageState extends State<WaterPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -89,7 +88,7 @@ class _WaterPageState extends State<WaterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         'Gelas ${index + 1}',
                         style: greenPoppinsTextStyle.copyWith(
@@ -102,7 +101,7 @@ class _WaterPageState extends State<WaterPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -129,7 +128,7 @@ class _WaterPageState extends State<WaterPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(
                         'Gelas ${index + 5}',
                         style: greenPoppinsTextStyle.copyWith(

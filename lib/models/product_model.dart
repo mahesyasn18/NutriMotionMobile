@@ -6,43 +6,44 @@ class ProductModel {
   final String? foodName;
   final String? picture;
   final String? foodType;
+  final String? foodCategory;
   final String? size;
   final String? barcodeNumber;
   final int? kalori;
-  final String? lemakTotal;
-  final String? lemakJenuh;
-  final String? protein;
-  final String? karbohidratTotal;
-  final String? gula;
-  final String? garam;
-  final String? serat;
-  final String? vitA;
-  final String? vitD;
-  final String? vitE;
-  final String? vitK;
-  final String? vitB1;
-  final String? vitB2;
-  final String? vitB3;
-  final String? vitB5;
-  final String? vitB6;
-  final String? folat;
-  final String? vitB12;
-  final String? biotin;
-  final String? kolin;
-  final String? vitC;
-  final String? kalsium;
-  final String? fosfor;
-  final String? magnesium;
-  final String? natrium;
-  final String? kalium;
-  final String? mangan;
-  final String? tembaga;
-  final String? kromium;
-  final String? besi;
-  final String? iodium;
-  final String? seng;
-  final String? selenium;
-  final String? fluor;
+  final int? lemakTotal;
+  final int? lemakJenuh;
+  final int? protein;
+  final int? karbohidratTotal;
+  final int? gula;
+  final int? garam;
+  final int? serat;
+  final int? vitA;
+  final int? vitD;
+  final int? vitE;
+  final int? vitK;
+  final int? vitB1;
+  final int? vitB2;
+  final int? vitB3;
+  final int? vitB5;
+  final int? vitB6;
+  final int? folat;
+  final int? vitB12;
+  final int? biotin;
+  final int? kolin;
+  final int? vitC;
+  final int? kalsium;
+  final int? fosfor;
+  final int? magnesium;
+  final int? natrium;
+  final int? kalium;
+  final int? mangan;
+  final int? tembaga;
+  final int? kromium;
+  final int? besi;
+  final int? iodium;
+  final int? seng;
+  final int? selenium;
+  final int? fluor;
 
   ProductModel({
     this.id,
@@ -50,6 +51,7 @@ class ProductModel {
     this.foodName,
     this.picture,
     this.foodType,
+    this.foodCategory,
     this.size,
     this.barcodeNumber,
     this.kalori,
@@ -95,6 +97,7 @@ class ProductModel {
         foodName: json['food_name'],
         picture: json['picture'],
         foodType: json['food_type'],
+        foodCategory: json['food_category'],
         size: json['size'],
         barcodeNumber: json['barcode_number'],
         kalori: json['kalori'],

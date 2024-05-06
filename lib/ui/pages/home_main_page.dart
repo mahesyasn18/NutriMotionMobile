@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
-import 'package:nutrimotion/shared/shared_methods.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:intl/intl.dart';
 import 'package:nutrimotion/ui/widgets/custom_fill_gauge.dart';
 import 'package:nutrimotion/ui/widgets/home_menu_item.dart';
 
 class HomeMainPage extends StatefulWidget {
-  HomeMainPage({super.key});
+  const HomeMainPage({super.key});
 
   @override
   State<HomeMainPage> createState() => _HomeMainPageState();
@@ -57,46 +54,44 @@ class _HomeMainPageState extends State<HomeMainPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/edit-data-personal');
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24),
-                          color: whiteColor,
-                        ),
-                        height: 48,
-                        width: 48,
-                        child: Image.asset(userProfilePic),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/edit-data-personal');
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: whiteColor,
                       ),
+                      height: 48,
+                      width: 48,
+                      child: Image.asset(userProfilePic),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hello, Welcome',
-                          textAlign: TextAlign.left,
-                          style: GrayPoppinsTextStyle.copyWith(
-                              fontSize: 14, fontWeight: light),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          userName,
-                          textAlign: TextAlign.left,
-                          style: GrayPoppinsTextStyle.copyWith(
-                              fontSize: 16, fontWeight: medium),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello, Welcome',
+                        textAlign: TextAlign.left,
+                        style: GrayPoppinsTextStyle.copyWith(
+                            fontSize: 14, fontWeight: light),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        userName,
+                        textAlign: TextAlign.left,
+                        style: GrayPoppinsTextStyle.copyWith(
+                            fontSize: 16, fontWeight: medium),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               GestureDetector(
                 onTap: () {

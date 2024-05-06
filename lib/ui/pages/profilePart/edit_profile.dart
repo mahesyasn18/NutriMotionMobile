@@ -57,7 +57,7 @@ class _EditProfileState extends State<EditProfile> {
                       'assets/logo.png',
                       width: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     RichText(
@@ -76,11 +76,11 @@ class _EditProfileState extends State<EditProfile> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 55),
                       child: LinearProgressIndicator(
                         color: greenColor,
                         minHeight: 20,
@@ -92,7 +92,7 @@ class _EditProfileState extends State<EditProfile> {
               );
             }
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 27),
+              padding: const EdgeInsets.symmetric(horizontal: 27),
               child: ListView(
                 children: [
                   const SizedBox(

@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'assets/logo.png',
                       width: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     RichText(
@@ -81,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
