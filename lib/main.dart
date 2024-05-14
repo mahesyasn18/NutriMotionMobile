@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutrimotion/blocs/food/food_bloc.dart';
 import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
 import 'package:nutrimotion/blocs/water/water_bloc.dart';
 import 'package:nutrimotion/shared/theme.dart';
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<WaterBloc>(
           create: (context) => WaterBloc(),
         ),
+        BlocProvider(
+          create: (context) => FoodBloc(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

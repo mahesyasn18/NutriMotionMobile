@@ -10,3 +10,13 @@ void showCustomSnackbar(BuildContext context, String message) {
     duration: const Duration(seconds: 2),
   ).show(context);
 }
+
+void showCustomSuccessSnackbar(BuildContext context, String message){
+  Flushbar(
+    icon: Icon(Icons.check_circle, color: whiteColor,),
+    message: message,
+    flushbarPosition: FlushbarPosition.BOTTOM,
+    backgroundColor: Colors.green,
+    duration: const Duration(seconds: 2),
+  ).show(context);
+}
