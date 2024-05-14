@@ -56,6 +56,66 @@ class CustomFormField extends StatelessWidget {
   }
 }
 
+class CustomFormNumField extends StatelessWidget {
+  final String title;
+  final bool obsecureText;
+  final TextEditingController? controller;
+
+  const CustomFormNumField(
+      {super.key,
+      required this.title,
+      this.obsecureText = false,
+      this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: blackPoppinsTextStyle.copyWith(
+            fontWeight: semiBold,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        TextFormField(
+          obscureText: obsecureText,
+          controller: controller,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(3),
+          ],
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(12),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: greenColor,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: grayFormColor,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class CustomSearchFormField extends StatelessWidget {
   final String hints;
   final bool obsecureText;
@@ -110,17 +170,27 @@ class CustomSearchFormField extends StatelessWidget {
   }
 }
 
-class CustomFormDigitField extends StatelessWidget {
+class CustomFormDigitField extends StatefulWidget {
   final String title;
   final bool obscureText;
   final TextEditingController? controller;
+  final void Function(int)?
+      onDurationChanged; // Modify the callback type to accept an int
 
   const CustomFormDigitField({
-    super.key,
+    Key? key,
     required this.title,
     this.obscureText = false,
     this.controller,
-  });
+    this.onDurationChanged,
+  }) : super(key: key);
+
+  @override
+  _CustomFormDigitFieldState createState() => _CustomFormDigitFieldState();
+}
+
+class _CustomFormDigitFieldState extends State<CustomFormDigitField> {
+  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +198,7 @@ class CustomFormDigitField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          widget.title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
@@ -138,19 +208,22 @@ class CustomFormDigitField extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
-          obscureText: obscureText,
-          controller: controller,
-          keyboardType: TextInputType.number, // Set keyboard type to number
+          obscureText: widget.obscureText,
+          controller: widget.controller,
+          keyboardType: TextInputType.number,
           inputFormatters: [
-            FilteringTextInputFormatter.allow(
-                RegExp(r'[0-9]')), // Allow only numbers
-            FilteringTextInputFormatter.digitsOnly, // Allow only digits
-            LengthLimitingTextInputFormatter(3), // Limit input to 3 characters
+            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(3),
           ],
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: _errorMessage != null ? Colors.red : grayFormColor,
+                width: 2.0,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -161,17 +234,50 @@ class CustomFormDigitField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: grayFormColor,
+                color: _errorMessage != null ? Colors.red : grayFormColor,
                 width: 2.0,
               ),
             ),
-            suffixText: 'dalam menit', // Add suffix text
+            suffixText: 'dalam menit',
             suffixStyle: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.normal,
             ),
           ),
+          onChanged: (value) {
+            setState(() {
+              if (value.isNotEmpty) {
+                try {
+                  int intValue = int.parse(value);
+                  if (intValue > 180) {
+                    _errorMessage = 'Tidak boleh lebih dari 180 menit';
+                  } else {
+                    _errorMessage = null;
+                  }
+                  if (value.isNotEmpty) {
+                    widget.onDurationChanged?.call(intValue);
+                  } else {
+                    widget.onDurationChanged?.call(0);
+                  }
+                } catch (e) {
+                  _errorMessage = 'Input tidak valid';
+                }
+              } else {
+                int intValue = 0;
+                widget.onDurationChanged?.call(intValue);
+                _errorMessage = null;
+              }
+            });
+          },
         ),
+        if (_errorMessage != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              _errorMessage!,
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
       ],
     );
   }
@@ -208,9 +314,7 @@ class customEnteredFormField extends StatelessWidget {
           height: 8,
         ),
         TextFormField(
-          enabled: enabled,
           readOnly: true,
-          initialValue: "Bermain Basket",
           obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(

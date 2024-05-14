@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:nutrimotion/shared/shared_values.dart';
 import 'package:nutrimotion/shared/theme.dart';
 
 class CustomActivityTile extends StatelessWidget {
   final String iconUrl;
   final String title;
   final VoidCallback? onTap;
-  const CustomActivityTile(
-      {super.key, required this.iconUrl, required this.title, this.onTap});
+
+  const CustomActivityTile({
+    Key? key,
+    required this.iconUrl,
+    required this.title,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.only(bottom: 18),
         padding: const EdgeInsets.symmetric(horizontal: 17),
         height: 85,
         decoration: BoxDecoration(
@@ -23,15 +30,19 @@ class CustomActivityTile extends StatelessWidget {
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: const Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Row(
           children: [
-            Image.asset(
-              iconUrl,
-              width: 50,
+            ClipOval(
+              child: Image.network(
+                '$baseUrls$iconUrl',
+                width: 60,
+                height: 60,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: 13,

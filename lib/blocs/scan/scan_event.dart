@@ -12,7 +12,6 @@ class ScanCheckBarcode extends ScanEvent {
   const ScanCheckBarcode(this.barcode_number);
 
   @override
-  // TODO: implement props
   List<Object> get props => [barcode_number];
 }
 
@@ -21,6 +20,5 @@ class ScanCheckProduct extends ScanEvent {
   const ScanCheckProduct(this.data);
 
   @override
-  // TODO: implement props
   List<Object> get props => [data];
 }

@@ -35,15 +35,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
             items: [
               Image.asset(
                 'assets/OnBoarding-1.png',
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
               ),
               Image.asset(
                 'assets/OnBoarding-2.png',
                 fit: BoxFit.fitHeight,
+                width: double.infinity,
               ),
               Image.asset(
                 'assets/OnBoarding-3.png',
                 fit: BoxFit.fitHeight,
+                width: double.infinity,
               )
             ],
             options: CarouselOptions(
