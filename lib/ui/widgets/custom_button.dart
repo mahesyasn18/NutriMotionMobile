@@ -29,7 +29,41 @@ class CustomFilledButton extends StatelessWidget {
           child: Text(
             title,
             style: whitePoppinsTextStyle.copyWith(
-                fontSize: 16, fontWeight: semiBold),
+                fontSize: 15, fontWeight: semiBold),
+          )),
+    );
+  }
+}
+
+class CustomFilledButtonWhite extends StatelessWidget {
+  final String title;
+  final double width;
+  final double height;
+  final VoidCallback? onPressed;
+
+  const CustomFilledButtonWhite({
+    super.key,
+    required this.title,
+    this.width = double.infinity,
+    this.height = 50,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      width: width,
+      child: TextButton(
+          onPressed: onPressed,
+          style: TextButton.styleFrom(
+              backgroundColor: whiteColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(56))),
+          child: Text(
+            title,
+            style: greenPoppinsTextStyle.copyWith(
+                fontSize: 15, fontWeight: semiBold),
           )),
     );
   }

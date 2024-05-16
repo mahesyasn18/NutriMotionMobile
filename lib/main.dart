@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:nutrimotion/blocs/activity/activity_bloc.dart';
 import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutrimotion/blocs/calory/calory_bloc.dart';
+import 'package:nutrimotion/blocs/detailactivity/detailactivity_bloc.dart';
 import 'package:nutrimotion/blocs/food/food_bloc.dart';
 import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
+import 'package:nutrimotion/blocs/usergoal/usergoal_bloc.dart';
 import 'package:nutrimotion/blocs/water/water_bloc.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/activity/create_activity_page.dart';
 import 'package:nutrimotion/ui/pages/activity/create_new_activity_page.dart';
+import 'package:nutrimotion/ui/pages/activity_page.dart';
 import 'package:nutrimotion/ui/pages/add_food_page.dart';
 import 'package:nutrimotion/ui/pages/add_new_food_page.dart';
 import 'package:nutrimotion/ui/pages/browse_food_page.dart';
+import 'package:nutrimotion/ui/pages/goal/create_goal_page.dart';
 import 'package:nutrimotion/ui/pages/home_page.dart';
 import 'package:nutrimotion/ui/pages/landing_page.dart';
 import 'package:nutrimotion/ui/pages/onboarding_page.dart';
@@ -52,6 +58,18 @@ class MyApp extends StatelessWidget {
         BlocProvider<WaterBloc>(
           create: (context) => WaterBloc(),
         ),
+        BlocProvider<ActivityBloc>(
+          create: (context) => ActivityBloc(),
+        ),
+        BlocProvider<UsergoalBloc>(
+          create: (context) => UsergoalBloc(),
+        ),
+        BlocProvider<DetailactivityBloc>(
+          create: (context) => DetailactivityBloc(),
+        ),
+        BlocProvider<CaloryBloc>(
+          create: (context) => CaloryBloc(),
+        ),
         BlocProvider(
           create: (context) => FoodBloc(),
         )
@@ -76,8 +94,11 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => const SignInPage(),
           '/sign-up': (context) => const SignUpPage(),
           '/success-regist': (context) => const SuccessRegisterPage(),
-          '/home-page': (context) => const HomePage(),
+          '/home-page': (context) => HomePage(
+                currentIndex: 0,
+              ),
           '/scan-page': (context) => const ScanPage(),
+          '/activity-page': (context) => const ActivityPage(),
           '/product-show': (context) => const ProductPage(),
           '/edit-profile': (context) => const EditProfile(),
           '/edit-password': (context) => const EditPassword(),
@@ -89,6 +110,7 @@ class MyApp extends StatelessWidget {
           '/browse-food': (context) => const BrowseFoodPage(),
           '/add-food': (context) => const AddFoodPage(),
           '/add-new-food': (context) => const AddNewFoodPage(),
+          '/create-goal': (context) => const CreateGoalPage(),
         },
       ),
     );

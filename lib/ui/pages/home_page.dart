@@ -7,17 +7,17 @@ import 'package:nutrimotion/ui/pages/profile_page.dart';
 import 'package:nutrimotion/ui/pages/water_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  int currentIndex;
+  HomePage({super.key, required this.currentIndex});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
-
   Widget body() {
-    switch (currentIndex) {
+    print(widget.currentIndex);
+    switch (widget.currentIndex) {
       case 0:
         return HomeMainPage();
       case 1:
@@ -44,14 +44,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: whiteColor,
         selectedLabelStyle: greenPoppinsTextStyle.copyWith(fontSize: 9),
         showSelectedLabels: true,
-        currentIndex: currentIndex,
+        currentIndex: widget.currentIndex,
         showUnselectedLabels: true,
         unselectedLabelStyle: blackPoppinsTextStyle.copyWith(fontSize: 9),
         selectedItemColor: greenColor,
         unselectedItemColor: blackSecondaryColor,
         onTap: (value) {
           setState(() {
-            currentIndex = value;
+            widget.currentIndex = value;
           });
         },
         items: [
@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
             icon: Image.asset(
               'assets/ic_home.png',
               width: 24,
-              color: currentIndex == 0 ? greenColor : blackSecondaryColor,
+              color:
+                  widget.currentIndex == 0 ? greenColor : blackSecondaryColor,
             ),
             label: 'Home',
           ),
@@ -67,7 +68,8 @@ class _HomePageState extends State<HomePage> {
             icon: Image.asset(
               'assets/ic_activity.png',
               width: 24,
-              color: currentIndex == 1 ? greenColor : blackSecondaryColor,
+              color:
+                  widget.currentIndex == 1 ? greenColor : blackSecondaryColor,
             ),
             label: 'Activity',
           ),
@@ -75,7 +77,8 @@ class _HomePageState extends State<HomePage> {
             icon: Image.asset(
               'assets/ic_water.png',
               width: 24,
-              color: currentIndex == 2 ? greenColor : blackSecondaryColor,
+              color:
+                  widget.currentIndex == 2 ? greenColor : blackSecondaryColor,
             ),
             label: 'Water',
           ),
@@ -83,7 +86,8 @@ class _HomePageState extends State<HomePage> {
             icon: Image.asset(
               'assets/ic_profile.png',
               width: 24,
-              color: currentIndex == 3 ? greenColor : blackSecondaryColor,
+              color:
+                  widget.currentIndex == 3 ? greenColor : blackSecondaryColor,
             ),
             label: 'Profile',
           ),

@@ -47,13 +47,14 @@ class ProfileMenuItem extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      subtitle,
+                      subtitle.length <= 28
+                          ? subtitle
+                          : subtitle.substring(0, 25) + '...',
                       style: blackPoppinsTextStyle.copyWith(
                         fontWeight: medium,
-                        fontSize: 14,
+                        fontSize: 13, // Adjust font size for ellipsis
                       ),
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 1, // Ganti angka ini sesuai kebutuhan Anda
                     ),
                   ],
                 ),

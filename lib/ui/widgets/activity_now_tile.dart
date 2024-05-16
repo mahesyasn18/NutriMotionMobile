@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrimotion/shared/shared_values.dart';
 import 'package:nutrimotion/shared/theme.dart';
 
 class ActivityNowTile extends StatelessWidget {
@@ -15,41 +16,31 @@ class ActivityNowTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Column(
       children: [
-        Image.asset(
-          iconUrl,
-          width: 50,
-        ),
-        const SizedBox(
-          width: 8,
-        ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: blackPoppinsTextStyle.copyWith(
-                  fontSize: 15,
-                  fontWeight: semiBold,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Row(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.network(
+              '$baseUrls$iconUrl',
+              width: 50,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    'assets/ic_clock.png',
-                    width: 15,
-                  ),
-                  const SizedBox(width: 5),
                   Text(
-                    playDate,
-                    style: subtitleGrayPoppinsTextStyle,
+                    title,
+                    style: blackPoppinsTextStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: semiBold,
+                    ),
                   ),
-                  const Spacer(),
+                  const SizedBox(height: 5),
                   Row(
                     children: [
                       Image.asset(
@@ -58,15 +49,29 @@ class ActivityNowTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        duration,
+                        playDate,
                         style: subtitleGrayPoppinsTextStyle,
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/ic_clock.png',
+                            width: 15,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            duration,
+                            style: subtitleGrayPoppinsTextStyle,
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
