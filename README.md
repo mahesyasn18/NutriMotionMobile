@@ -1,4 +1,4 @@
-**#NutriMotion-Mobile
+#NutriMotion-Mobile
 
 # FOR BACKEND PLEASE CLONE THIS REPOSITORY
 ```
