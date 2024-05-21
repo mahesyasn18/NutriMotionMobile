@@ -1,6 +1,6 @@
 **#NutriMotion-Mobile
 
-#FOR BACKEND PLEASE CLONE THIS REPOSITORY
+# FOR BACKEND PLEASE CLONE THIS REPOSITORY
 ```
 (https://github.com/mahesyasn18/be-nutrimotion.git)
 ```
