@@ -3,16 +3,18 @@ import 'package:intl/intl.dart';
 import 'package:nutrimotion/shared/theme.dart';
 
 class CustomFoodTile extends StatelessWidget {
-  final DateFormat formatter = DateFormat('d MMM yyyy - h.mm a');
+  final DateFormat formatter = DateFormat('d MMM yyyy');
   final String foodName;
   final String? foodCal;
   final String? foodSize;
   final DateTime? dateTime;
+  final TimeOfDay? eatTime;
   CustomFoodTile(
       {super.key,
       this.dateTime,
       this.foodCal,
       this.foodSize,
+      this.eatTime,
       required this.foodName});
 
   @override
@@ -62,7 +64,7 @@ class CustomFoodTile extends StatelessWidget {
                               margin: const EdgeInsets.only(top: 10, left: 5),
                               alignment: Alignment.center,
                               child: Text(
-                                formatter.format(dateTime!),
+                                '${formatter.format(dateTime!)} ${eatTime!.hour}.${eatTime!.minute}',
                                 style: blackPoppinsTextStyle.copyWith(
                                   fontSize: 13,
                                   fontWeight: light,

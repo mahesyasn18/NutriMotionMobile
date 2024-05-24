@@ -193,7 +193,6 @@ class _AddNewFoodPageState extends State<AddNewFoodPage> {
                 GestureDetector(
                   onTap: () {
                     if (validate()) {
-                      print('tipe data: ${foodCalController.text.runtimeType}');
                       final foodCal = int.parse(foodCalController.text);
                       final foodCarb = int.parse(foodCarbController.text);
                       final foodFat = int.parse(foodFatController.text);

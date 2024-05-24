@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:nutrimotion/models/complete_food_model.dart';
 import 'package:nutrimotion/models/eaten_food_model.dart';
 import 'package:nutrimotion/services/auth_service.dart';
 import 'package:http/http.dart' as http;
@@ -41,10 +41,55 @@ class FoodService {
         return userEatenFoodData;
         // return userEatenFoodData;
       }else{
-        throw Exception('Failed to add eaten food ${res.statusCode}');
+        throw Exception('Failed to get eaten food ${res.statusCode}');
       }
     } catch (e) {
       throw Exception('Failed to get user eaten food data: ${e}');
     }
   }
+  
+  Future<List<CompleteFoodModel>> getAllFood() async{
+    try {
+      final token = await AuthService().getToken();
+      final res = await http.get(
+        Uri.parse('$baseUrl/get-all-food'),
+        headers: {'Authorization': token,},
+      );
+      if(res.statusCode == 200) {
+        final jsonData = jsonDecode(res.body);
+        List<CompleteFoodModel> foodList = jsonData.map<CompleteFoodModel>((item) {
+          return CompleteFoodModel.fromJson(item);
+        }).toList();
+        return foodList;
+        // return userEatenFoodData;
+      }else{
+        throw Exception('Failed to get all food data ${res.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to get all food data: ${e}');
+    }
+  }
+
+  Future<List<CompleteFoodModel>> getUserHistoryFood() async{
+    try {
+      print('dicobain');
+      final token = await AuthService().getToken();
+      final res = await http.get(
+        Uri.parse('$baseUrl/get-user-history-food'),
+        headers: {'Authorization': token,},
+      );
+      if(res.statusCode == 200) {
+        final jsonData = jsonDecode(res.body);
+        List<CompleteFoodModel> foodList = jsonData.map<CompleteFoodModel>((item) {
+          return CompleteFoodModel.fromJson(item);
+        }).toList();
+        return foodList;
+        // return userEatenFoodData;
+      }else{
+        throw Exception('Failed to get all food data ${res.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to get all food data: ${e}');
+    }
+  }  
 }

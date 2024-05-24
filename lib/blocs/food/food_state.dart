@@ -37,3 +37,23 @@ class GetUserEatenFoodSuccess extends FoodState{
   // TODO: implement props
   List<EatenFoodModel> get props => data;
 }
+
+class GetAllFoodSuccess extends FoodState{
+  final List<CompleteFoodModel> data;
+  const GetAllFoodSuccess(
+    this.data
+  );
+  @override
+  // TODO: implement props
+  List<CompleteFoodModel> get props => data;
+}
+
+class GetUserHistoryFoodSuccess extends FoodState{
+  final List<CompleteFoodModel> data;
+  const GetUserHistoryFoodSuccess(
+    this.data
+  );
+  @override
+  // TODO: implement props
+  List<CompleteFoodModel> get props => data;
+}

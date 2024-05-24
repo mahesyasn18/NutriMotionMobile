@@ -22,3 +22,7 @@ class AddEatenFood extends FoodEvent{
 class GetUserEatenFood extends FoodEvent{
   
 }
+
+class GetAllFood extends FoodEvent{}
+
+class GetUserHistoryFood extends FoodEvent{}
