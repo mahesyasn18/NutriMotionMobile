@@ -331,15 +331,6 @@ class _ActivityPageState extends State<ActivityPage> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                // CustomFilledButton(
-                                //   title: "Tambah Aktivitas",
-                                //   width: 142,
-                                //   height: 35,
-                                //   onPressed: () {
-                                //     Navigator.pushNamed(
-                                //         context, '/create-activity');
-                                //   },
-                                // ),
                               ],
                             ),
                           ),
@@ -387,15 +378,6 @@ class _ActivityPageState extends State<ActivityPage> {
                                   ),
                                 ),
                                 const SizedBox(width: 8),
-                                // CustomFilledButton(
-                                //   title: "Tambah Aktivitas",
-                                //   width: 142,
-                                //   height: 35,
-                                //   onPressed: () {
-                                //     Navigator.pushNamed(
-                                //         context, '/create-activity');
-                                //   },
-                                // ),
                               ],
                             ),
                           ),

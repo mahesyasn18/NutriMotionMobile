@@ -190,7 +190,7 @@ class _ScanPageState extends State<ScanPage> {
             height: screenHeight,
             child: CameraPreview(controller),
           ),
-          if (result.isNotEmpty && result.length == 13)
+          if (result.isNotEmpty && (result.length == 13 || result.length == 12))
             // Check if result is not null
             if (result != "Product Tidak tersedia")
               BlocConsumer<ScanBloc, ScanState>(
@@ -255,9 +255,7 @@ class _ScanPageState extends State<ScanPage> {
                   );
                 },
               ),
-          if ((result.isNotEmpty && result.length != 13) ||
-              result == "Product Tidak tersedia")
-            // Check if result is not empty and its length is not 12
+          if ((result.isNotEmpty && (result.length != 13)))
             Positioned(
               left: 20,
               bottom: 20,
@@ -269,6 +267,25 @@ class _ScanPageState extends State<ScanPage> {
                 ),
                 child: const Text(
                   "Barcode tidak sesuai!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+          if (result == "Product Tidak tersedia")
+            Positioned(
+              left: 20,
+              bottom: 20,
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  result,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

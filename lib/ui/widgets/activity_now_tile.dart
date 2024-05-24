@@ -21,9 +21,13 @@ class ActivityNowTile extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.network(
-              '$baseUrls$iconUrl',
-              width: 50,
+            ClipOval(
+              child: Image.network(
+                '$baseUrls$iconUrl',
+                width: 60,
+                height: 60,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: 8,

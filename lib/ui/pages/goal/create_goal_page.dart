@@ -37,6 +37,10 @@ class _CreateGoalPageState extends State<CreateGoalPage> {
           }
           if (state is UsergoalSuccess) {
             Navigator.pop(context);
+            showCustomSuccessSnackbar(
+              context,
+              "Goal Kalori ditambahkan!",
+            );
           }
         },
         builder: (context, state) {

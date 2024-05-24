@@ -112,6 +112,8 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                 builder: (context) => HomePage(currentIndex: 1),
               ),
             );
+            showCustomSuccessSnackbar(
+                context, "Aktivitas berhasil ditambahkan!");
           }
         },
         builder: (context, state) {

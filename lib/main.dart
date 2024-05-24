@@ -4,6 +4,7 @@ import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrimotion/blocs/calory/calory_bloc.dart';
 import 'package:nutrimotion/blocs/detailactivity/detailactivity_bloc.dart';
+import 'package:nutrimotion/blocs/food/food_bloc.dart';
 import 'package:nutrimotion/blocs/scan/scan_bloc.dart';
 import 'package:nutrimotion/blocs/usergoal/usergoal_bloc.dart';
 import 'package:nutrimotion/blocs/water/water_bloc.dart';
@@ -69,6 +70,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<CaloryBloc>(
           create: (context) => CaloryBloc(),
         ),
+        BlocProvider(
+          create: (context) => FoodBloc(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
