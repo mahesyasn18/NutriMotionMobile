@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:nutrimotion/models/complete_food_model.dart';
 import 'package:nutrimotion/models/eaten_food_model.dart';
 import 'package:nutrimotion/services/food_service.dart';
 part 'food_event.dart';
@@ -30,6 +31,28 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
           emit(FoodFailed(e.toString()));
         }
       }
+
+      if (event is GetAllFood){
+        try {
+          emit(FoodLoading());
+          final List<CompleteFoodModel> foodList = await FoodService().getAllFood();
+          emit(GetAllFoodSuccess(foodList));
+        } catch (e) {
+          emit(FoodFailed(e.toString()));
+        }
+      }
+
+      if (event is GetUserHistoryFood){
+        try {
+          print('dicobain');
+          emit(FoodLoading());
+          final List<CompleteFoodModel> foodList = await FoodService().getUserHistoryFood();
+          emit(GetUserHistoryFoodSuccess(foodList));
+        } catch (e) {
+          emit(FoodFailed(e.toString()));
+        }
+      }
+
     });
   }
 }

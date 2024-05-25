@@ -123,12 +123,14 @@ class CustomSearchFormField extends StatelessWidget {
   final String hints;
   final bool obsecureText;
   final TextEditingController? controller;
+  final ValueChanged? onChanged;
 
   const CustomSearchFormField({
     super.key,
     required this.hints,
     this.obsecureText = false,
     this.controller,
+    this.onChanged,
   });
 
   @override
@@ -139,6 +141,7 @@ class CustomSearchFormField extends StatelessWidget {
         TextFormField(
           obscureText: obsecureText,
           controller: controller,
+          onChanged: onChanged,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
