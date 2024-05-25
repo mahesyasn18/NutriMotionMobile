@@ -8,5 +8,12 @@ sealed class DailynutEvent extends Equatable {
 }
 
 class GetUserDailyNutrition extends DailynutEvent{
+  final DateTime data;
+  const GetUserDailyNutrition(
+    this.data
+  );
 
+  @override
+  // TODO: implement props
+  List<DateTime> get props => [data];
 }

@@ -14,7 +14,7 @@ class DailynutBloc extends Bloc<DailynutEvent, DailynutState> {
         try {
           emit(DailynutLoading());
           final DailyNutritionModel data =
-              await DailynutService().getUserDailyNutrition();
+              await DailynutService().getUserDailyNutrition(event.data);
           emit(GetUserDailyNutritionSuccess(data));
         } catch (e) {
           emit(DailynutFailed(e.toString()));

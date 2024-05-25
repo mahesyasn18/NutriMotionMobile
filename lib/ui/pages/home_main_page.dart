@@ -12,6 +12,20 @@ import 'package:nutrimotion/ui/widgets/custom_list_eaten_food.dart';
 import 'package:nutrimotion/ui/widgets/home_menu_item.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
+import 'package:nutrimotion/blocs/dailynut/dailynut_bloc.dart';
+import 'package:nutrimotion/blocs/food/food_bloc.dart';
+import 'package:nutrimotion/models/eaten_food_model.dart';
+import 'package:nutrimotion/shared/shared_methods.dart';
+import 'package:nutrimotion/shared/theme.dart';
+import 'package:intl/intl.dart';
+import 'package:nutrimotion/ui/widgets/custom_fill_gauge.dart';
+import 'package:nutrimotion/ui/widgets/custom_list_eaten_food.dart';
+import 'package:nutrimotion/ui/widgets/home_menu_item.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+
 class HomeMainPage extends StatefulWidget {
   const HomeMainPage({super.key});
 
@@ -35,7 +49,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
   late DailynutBloc _getUserDailyNut;
   late String dayName;
   DateTime? date;
-
+  DateTime? picked = null;
   TimeOfDay breakfastStart = TimeOfDay(hour: 6, minute: 0);
   TimeOfDay breakfastEnd = TimeOfDay(hour: 10, minute: 59);
   TimeOfDay lunchStart = TimeOfDay(hour: 11, minute: 0);
@@ -46,94 +60,101 @@ class _HomeMainPageState extends State<HomeMainPage> {
   @override
   void initState() {
     super.initState();
-    date = DateTime.now();
-    dayName = 'Today';
-  
-    _getUserFood = context.read<FoodBloc>();
-    _getUserFood.add(GetUserEatenFood());
-    _getUserDailyNut = context.read<DailynutBloc>();
-    _getUserDailyNut.add(GetUserDailyNutrition());
+    print(picked);
+    if (picked == null) {
+      date = DateTime.now();
+      dayName = 'Today';
+      _getUserFood = context.read<FoodBloc>();
+      _getUserDailyNut = context.read<DailynutBloc>();
+
+      // Load initial data
+      _getUserFood.add(GetUserEatenFood());
+      _getUserDailyNut.add(GetUserDailyNutrition(date!));
+    }
   }
 
-  final userProfilePic = 'assets/ic_dataPersonal.png';
-
-  final DateFormat formatter = DateFormat('d MMM');
-
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: date ?? DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
+
     if (picked != null && picked != date) {
       setState(() {
         date = picked;
         dayName = DateFormat('EEEE').format(date!);
       });
+
+      _getUserDailyNut.add(GetUserDailyNutrition(date!));
+      _getUserFood.add(GetUserEatenFood());
     }
   }
-  
+
+  final userProfilePic = 'assets/ic_dataPersonal.png';
+  final DateFormat formatter = DateFormat('d MMM');
+
   @override
   Widget build(BuildContext context) {
-    String getGreeting(){
+    String getGreeting() {
       var now = DateTime.now();
       if (now.hour <= 10 && now.minute <= 59 && now.hour >= 6) {
         return 'Your Breakfast';
       } else if (now.hour <= 17 && now.minute <= 59 && now.hour >= 11) {
         return 'Your Lunch';
-      } else if (now.hour <= 5 && now.minute <= 59 || now.hour >= 18 && now.hour <= 23 && now.minute <= 59) {
+      } else if (now.hour <= 5 && now.minute <= 59 ||
+          now.hour >= 18 && now.hour <= 23 && now.minute <= 59) {
         return 'Your Dinner';
       }
       return '';
     }
 
     return Scaffold(
-      body: Container(
-      margin:
-          const EdgeInsets.only(left: 16, right: 16, top: 48, bottom: 28),
+        body: Container(
+      margin: const EdgeInsets.only(left: 16, right: 16, top: 48, bottom: 28),
       child: Column(
         children: [
-          BlocConsumer<FoodBloc, FoodState>(
-            listener: (context, state){
-              if (state is GetUserEatenFoodSuccess){
-                int totalCalori = 0;
-                double totalFat = 0;
-                double totalProtein = 0;
-                double totalCarb = 0;
-                List<EatenFoodModel> tempDinnerFoodList = [];
-                List<EatenFoodModel> tempLunchFoodList = [];
-                List<EatenFoodModel> tempBreakfastFoodList = [];
-                state.data.forEach((foodData) {
-                  totalCalori = totalCalori + foodData.foodCalori!;
-                  totalCarb = totalCarb + foodData.foodCarb!;
-                  totalFat = totalFat + foodData.foodFat!;
-                  totalProtein = totalProtein + foodData.foodProtein!;
+          BlocConsumer<FoodBloc, FoodState>(listener: (context, state) {
+            if (state is GetUserEatenFoodSuccess) {
+              int totalCalori = 0;
+              double totalFat = 0;
+              double totalProtein = 0;
+              double totalCarb = 0;
+              List<EatenFoodModel> tempDinnerFoodList = [];
+              List<EatenFoodModel> tempLunchFoodList = [];
+              List<EatenFoodModel> tempBreakfastFoodList = [];
+              state.data.forEach((foodData) {
+                totalCalori = totalCalori + foodData.foodCalori!;
+                totalCarb = totalCarb + foodData.foodCarb!;
+                totalFat = totalFat + foodData.foodFat!;
+                totalProtein = totalProtein + foodData.foodProtein!;
 
-                  if (foodData.eatTime!.hour >= breakfastStart.hour && foodData.eatTime!.hour <= breakfastEnd.hour && foodData.eatTime!.minute <= breakfastEnd.minute){
-                    tempBreakfastFoodList.add(foodData);
-                  }else if (foodData.eatTime!.hour >= lunchStart.hour && foodData.eatTime!.hour <= lunchEnd.hour && foodData.eatTime!.minute <= lunchEnd.minute){
-                    tempLunchFoodList.add(foodData);
-                  }else{
-                    tempDinnerFoodList.add(foodData);
-                  }
-
-                } );
-                setState(() {
-                  currentCalori = totalCalori;
-                  currentCarb = totalCarb;
-                  currentFat = totalFat;
-                  currentProtein = totalProtein;
-                  breakfastFoodList = tempBreakfastFoodList;
-                  lunchFoodList = tempLunchFoodList;
-                  dinnerFoodList = tempDinnerFoodList;
-                });
-              }
-            },
-            builder: (context, state){
-              return Container();
-            } 
-          ),
+                if (foodData.eatTime!.hour >= breakfastStart.hour &&
+                    foodData.eatTime!.hour <= breakfastEnd.hour &&
+                    foodData.eatTime!.minute <= breakfastEnd.minute) {
+                  tempBreakfastFoodList.add(foodData);
+                } else if (foodData.eatTime!.hour >= lunchStart.hour &&
+                    foodData.eatTime!.hour <= lunchEnd.hour &&
+                    foodData.eatTime!.minute <= lunchEnd.minute) {
+                  tempLunchFoodList.add(foodData);
+                } else {
+                  tempDinnerFoodList.add(foodData);
+                }
+              });
+              setState(() {
+                currentCalori = totalCalori;
+                currentCarb = totalCarb;
+                currentFat = totalFat;
+                currentProtein = totalProtein;
+                breakfastFoodList = tempBreakfastFoodList;
+                lunchFoodList = tempLunchFoodList;
+                dinnerFoodList = tempDinnerFoodList;
+              });
+            }
+          }, builder: (context, state) {
+            return Container();
+          }),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,14 +187,14 @@ class _HomeMainPageState extends State<HomeMainPage> {
                       }
                     },
                     builder: ((context, state) {
-                      if (state is AuthLoading){
+                      if (state is AuthLoading) {
                         return LinearProgressIndicator(
                           color: greenColor,
                           minHeight: 20,
                           borderRadius: BorderRadius.circular(30),
                         );
                       }
-                      if(state is AuthSuccess){
+                      if (state is AuthSuccess) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -186,7 +207,6 @@ class _HomeMainPageState extends State<HomeMainPage> {
                             const SizedBox(
                               height: 5,
                             ),
-
                             Text(
                               state.user.fullname.toString(),
                               textAlign: TextAlign.left,
@@ -197,7 +217,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                         );
                       }
                       return Container();
-                    }), 
+                    }),
                   ),
                 ],
               ),
@@ -217,8 +237,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
             ],
           ),
           Container(
-            margin:
-                const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,13 +278,13 @@ class _HomeMainPageState extends State<HomeMainPage> {
             ),
           ),
           BlocConsumer<DailynutBloc, DailynutState>(
-            listener: (context, state){
-              if (state is DailynutFailed){
+            listener: (context, state) {
+              if (state is DailynutFailed) {
                 showCustomSnackbar(context, state.e);
               }
             },
             builder: ((context, state) {
-              if (state is DailynutLoading){
+              if (state is DailynutLoading) {
                 return Container(
                   height: 315,
                   width: 361,
@@ -274,18 +293,16 @@ class _HomeMainPageState extends State<HomeMainPage> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: FractionallySizedBox(
-                    widthFactor: 0.5, // Untuk memenuhi lebar Container
-                    heightFactor: 0.5, // Sesuaikan dengan kebutuhan tinggi
-                    alignment: Alignment.center, // Atur posisi LinearProgressIndicator
-                    child: CircularProgressIndicator(
-                      color: whiteColor,
-                    )
-                  ),
+                      widthFactor: 0.5, // Untuk memenuhi lebar Container
+                      heightFactor: 0.5, // Sesuaikan dengan kebutuhan tinggi
+                      alignment: Alignment
+                          .center, // Atur posisi LinearProgressIndicator
+                      child: CircularProgressIndicator(
+                        color: whiteColor,
+                      )),
                 );
-
-
               }
-              if (state is GetUserDailyNutritionSuccess){
+              if (state is GetUserDailyNutritionSuccess) {
                 recommendedCalori = state.data.calori!.toInt();
                 carbValue = state.data.carb!.toDouble();
                 proteinValue = state.data.protein!.toDouble();
@@ -333,9 +350,15 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                   ),
                                   // fill
                                   HalfCircularFillGauge(
-                                    value: (currentCalori / recommendedCalori) > 1 ? 3.14 : (currentCalori / recommendedCalori) * 3.14, // Nilai fill gauge (0.0 - 1.0)
-                                    color:
-                                        (currentCalori / recommendedCalori) > 1 ? redColor: secondaryGreenColor, // Warna fill gauge kosong
+                                    value: (currentCalori / recommendedCalori) >
+                                            1
+                                        ? 3.14
+                                        : (currentCalori / recommendedCalori) *
+                                            3.14, // Nilai fill gauge (0.0 - 1.0)
+                                    color: (currentCalori / recommendedCalori) >
+                                            1
+                                        ? redColor
+                                        : secondaryGreenColor, // Warna fill gauge kosong
                                     text:
                                         currentCalori.toString(), //text calori
                                     strokeWidth: 12.0, // Ketebalan garis
@@ -358,8 +381,13 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: (currentCarb/ carbValue) > 1 ? 1 : currentCarb/ carbValue, 
-                                        progressColor: (currentCarb/ carbValue) > 1 ? redColor : secondaryGreenColor,
+                                        percent: (currentCarb / carbValue) > 1
+                                            ? 1
+                                            : currentCarb / carbValue,
+                                        progressColor:
+                                            (currentCarb / carbValue) > 1
+                                                ? redColor
+                                                : secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
                                         center: Text(
@@ -386,8 +414,15 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: (currentProtein/ proteinValue) > 1 ? 1 : (currentProtein/ proteinValue),
-                                        progressColor: (currentProtein/ proteinValue) > 1 ? redColor : secondaryGreenColor,
+                                        percent:
+                                            (currentProtein / proteinValue) > 1
+                                                ? 1
+                                                : (currentProtein /
+                                                    proteinValue),
+                                        progressColor:
+                                            (currentProtein / proteinValue) > 1
+                                                ? redColor
+                                                : secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
                                         center: Text(
@@ -414,8 +449,13 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: (currentFat/ fatValue) > 1 ? 1 : (currentFat/ fatValue),
-                                        progressColor: (currentFat/ fatValue) > 1 ? redColor :secondaryGreenColor,
+                                        percent: (currentFat / fatValue) > 1
+                                            ? 1
+                                            : (currentFat / fatValue),
+                                        progressColor:
+                                            (currentFat / fatValue) > 1
+                                                ? redColor
+                                                : secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
                                         center: Text(
@@ -445,7 +485,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                     ],
                   ),
                 );
-              }else{
+              } else {
                 return Container(
                   height: 315,
                   width: 361,
@@ -514,7 +554,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: currentCarb/ carbValue,
+                                        percent: currentCarb / carbValue,
                                         progressColor: secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
@@ -542,7 +582,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: currentProtein/ proteinValue,
+                                        percent: currentProtein / proteinValue,
                                         progressColor: secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
@@ -570,7 +610,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                                         radius: 45,
                                         circularStrokeCap:
                                             CircularStrokeCap.round,
-                                        percent: currentFat/ fatValue,
+                                        percent: currentFat / fatValue,
                                         progressColor: secondaryGreenColor,
                                         backgroundColor:
                                             brownColor.withOpacity(0.27),
@@ -602,7 +642,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                   ),
                 );
               }
-            }), 
+            }),
           ),
           Container(
             alignment: Alignment.bottomLeft,
@@ -631,7 +671,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
                       Navigator.pushNamed(context, '/record-food-page');
                     },
                   ),
-                  CustomListEatenFood(foodData: breakfastFoodList),     
+                  CustomListEatenFood(foodData: breakfastFoodList),
                   HomeMenuItem(
                     iconUrl: 'assets/ic_noon.png',
                     text: 'Lunch',
@@ -656,7 +696,6 @@ class _HomeMainPageState extends State<HomeMainPage> {
           ),
         ],
       ),
-    )
-  );
+    ));
   }
 }
