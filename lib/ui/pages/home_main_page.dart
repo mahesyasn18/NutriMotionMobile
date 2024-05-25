@@ -52,7 +52,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
     _getUserFood = context.read<FoodBloc>();
     _getUserFood.add(GetUserEatenFood());
     _getUserDailyNut = context.read<DailynutBloc>();
-    _getUserDailyNut.add(GetUserDailyNutrition());
+    _getUserDailyNut.add(GetUserDailyNutrition(date!));
   }
 
   final userProfilePic = 'assets/ic_dataPersonal.png';
@@ -71,6 +71,8 @@ class _HomeMainPageState extends State<HomeMainPage> {
         date = picked;
         dayName = DateFormat('EEEE').format(date!);
       });
+      _getUserDailyNut.add(GetUserDailyNutrition(picked));
+      _getUserFood.add(GetUserEatenFood());
     }
   }
   
