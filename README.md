@@ -5,6 +5,10 @@ NutriMotion adalah sebuah terobosan revolusioner dalam mendukung gaya hidup seha
 - Fadel Mohammad Fadhilah (221511048)
 - Mahesya Setia Nugraha (221511054)
 
+## 👌 Pre Requisite
+please clone the backend first on this link
+https://github.com/mahesyasn18/be-nutrimotion
+
 ## 💻 Clone Repository
 ### Clone Repository
 ```bash
