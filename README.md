@@ -63,7 +63,7 @@ git push -u origin branch-name
 
 ## 🔱 License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Flutter is licensed under the BSD 3-Clause License
 
 ------------
 
