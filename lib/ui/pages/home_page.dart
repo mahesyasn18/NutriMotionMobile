@@ -19,7 +19,9 @@ class _HomePageState extends State<HomePage> {
     print(widget.currentIndex);
     switch (widget.currentIndex) {
       case 0:
-        return HomeMainPage();
+        return HomeMainPage(
+          picked: DateTime.now(),
+        );
       case 1:
         return const ActivityPage();
       case 2:

@@ -12,22 +12,9 @@ import 'package:nutrimotion/ui/widgets/custom_list_eaten_food.dart';
 import 'package:nutrimotion/ui/widgets/home_menu_item.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nutrimotion/blocs/auth/auth_bloc.dart';
-import 'package:nutrimotion/blocs/dailynut/dailynut_bloc.dart';
-import 'package:nutrimotion/blocs/food/food_bloc.dart';
-import 'package:nutrimotion/models/eaten_food_model.dart';
-import 'package:nutrimotion/shared/shared_methods.dart';
-import 'package:nutrimotion/shared/theme.dart';
-import 'package:intl/intl.dart';
-import 'package:nutrimotion/ui/widgets/custom_fill_gauge.dart';
-import 'package:nutrimotion/ui/widgets/custom_list_eaten_food.dart';
-import 'package:nutrimotion/ui/widgets/home_menu_item.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 class HomeMainPage extends StatefulWidget {
-  const HomeMainPage({super.key});
+  final DateTime? picked;
+  const HomeMainPage({Key? key, this.picked}) : super(key: key);
 
   @override
   State<HomeMainPage> createState() => _HomeMainPageState();
@@ -49,7 +36,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
   late DailynutBloc _getUserDailyNut;
   late String dayName;
   DateTime? date;
-  DateTime? picked = null;
+
   TimeOfDay breakfastStart = TimeOfDay(hour: 6, minute: 0);
   TimeOfDay breakfastEnd = TimeOfDay(hour: 10, minute: 59);
   TimeOfDay lunchStart = TimeOfDay(hour: 11, minute: 0);
@@ -60,20 +47,18 @@ class _HomeMainPageState extends State<HomeMainPage> {
   @override
   void initState() {
     super.initState();
-    print(picked);
-    if (picked == null) {
-      date = DateTime.now();
-      dayName = 'Today';
-      _getUserFood = context.read<FoodBloc>();
-      _getUserDailyNut = context.read<DailynutBloc>();
 
-      // Load initial data
-      _getUserFood.add(GetUserEatenFood());
-      _getUserDailyNut.add(GetUserDailyNutrition(date!));
-    }
+    date = widget.picked;
+    dayName = 'Today';
+    _getUserFood = context.read<FoodBloc>();
+    _getUserDailyNut = context.read<DailynutBloc>();
+
+    _getUserFood.add(GetUserEatenFood());
+    _getUserDailyNut.add(GetUserDailyNutrition(date!));
   }
 
   Future<void> _selectDate(BuildContext context) async {
+    DateTime? picked;
     picked = await showDatePicker(
       context: context,
       initialDate: date ?? DateTime.now(),
@@ -85,10 +70,10 @@ class _HomeMainPageState extends State<HomeMainPage> {
       setState(() {
         date = picked;
         dayName = DateFormat('EEEE').format(date!);
+        _getUserDailyNut.add(GetUserDailyNutrition(date!));
+        _getUserFood.add(GetUserEatenFood());
       });
-
-      _getUserDailyNut.add(GetUserDailyNutrition(date!));
-      _getUserFood.add(GetUserEatenFood());
+      HomeMainPage(picked: date);
     }
   }
 
