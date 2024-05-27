@@ -19,7 +19,6 @@ class CustomActivityTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 18),
         padding: const EdgeInsets.symmetric(horizontal: 17),
         height: 85,
         decoration: BoxDecoration(

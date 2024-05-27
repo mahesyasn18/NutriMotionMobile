@@ -20,10 +20,10 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
   List<CompleteFoodModel> filteredFoodData = [];
 
   void filterData(String query) {
-
     setState(() {
       filteredFoodData = foodsData
-          .where((food) => food.foodName.toLowerCase().contains(query.toLowerCase()))
+          .where((food) =>
+              food.foodName.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -70,7 +70,8 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
                 ),
                 child: Text(
                   'Tambah Makanan Baru',
-                  style: whitePoppinsTextStyle.copyWith(fontSize: 16, fontWeight: bold),
+                  style: whitePoppinsTextStyle.copyWith(
+                      fontSize: 16, fontWeight: bold),
                 ),
               ),
             ),
@@ -79,7 +80,8 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Daftar Makanan dan Minuman',
-                style: blackPoppinsTextStyle.copyWith(fontSize: 17, fontWeight: semiBold),
+                style: blackPoppinsTextStyle.copyWith(
+                    fontSize: 17, fontWeight: semiBold),
               ),
             ),
             BlocConsumer<FoodBloc, FoodState>(
@@ -95,43 +97,45 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
                 }
               },
               builder: (context, state) {
-                if (state is FoodLoading){
+                if (state is FoodLoading) {
                   return CircularProgressIndicator(
                     color: greenColor,
                   );
                 }
 
                 return Expanded(
-                  child: filteredFoodData.isNotEmpty 
-                  ? ListView.builder(
-                    itemCount: filteredFoodData.length,
-                    itemBuilder: (context, index) => Card(
-                      elevation: 0,
-                      key: ValueKey(filteredFoodData[index].foodName),
-                      child:Container(
-                          margin: const EdgeInsets.symmetric(vertical: 12),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/add-food', arguments: filteredFoodData[index]);
-                            },
-                            child: CustomFoodTile(
-                              foodName: filteredFoodData[index].foodName,
-                              foodCal: filteredFoodData[index].kalori.toString(),
-                              foodSize: filteredFoodData[index].size.toString(),
-                            ),
-                          ),
-                        )
-                    )
-                  ) : Text(
-                    'No result found',
-                    style: blackPoppinsTextStyle.copyWith(
-                      fontSize: 17, fontWeight: bold
-                    ),
-                  ),
+                  child: filteredFoodData.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: filteredFoodData.length,
+                          itemBuilder: (context, index) => Card(
+                              elevation: 0,
+                              key: ValueKey(filteredFoodData[index].foodName),
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/add-food',
+                                        arguments: filteredFoodData[index]);
+                                  },
+                                  child: CustomFoodTile(
+                                    foodName: filteredFoodData[index].foodName,
+                                    foodCal: filteredFoodData[index]
+                                        .kalori
+                                        .toString(),
+                                    foodSize:
+                                        filteredFoodData[index].size.toString(),
+                                  ),
+                                ),
+                              )))
+                      : Text(
+                          'No result found',
+                          style: blackPoppinsTextStyle.copyWith(
+                              fontSize: 17, fontWeight: bold),
+                        ),
                 );
               },
             ),
-            
           ],
         ),
       ),

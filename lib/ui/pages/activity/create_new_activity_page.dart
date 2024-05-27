@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrimotion/blocs/activity/activity_bloc.dart';
 import 'package:nutrimotion/blocs/detailactivity/detailactivity_bloc.dart';
 import 'package:nutrimotion/models/activity_detail_form_model.dart';
+import 'package:nutrimotion/models/activity_model.dart';
 import 'package:nutrimotion/shared/shared_methods.dart';
 import 'package:nutrimotion/shared/theme.dart';
 import 'package:nutrimotion/ui/pages/home_page.dart';
@@ -21,6 +22,28 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
   final activitynameController = TextEditingController(text: '');
   final durasiController = TextEditingController(text: '');
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+  double lowValue = 0;
+  double midValue = 0;
+  double highValue = 0;
+  double _currentSliderValue = 0.0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final ActivityModel activityModel =
+        ModalRoute.of(context)!.settings.arguments as ActivityModel;
+
+    // Assuming activityModel is passed and contains necessary values
+    if (activityModel != null) {
+      activitynameController.text = activityModel.activityName;
+      lowValue = activityModel.jumlahKaloriRendah.toDouble();
+      midValue = activityModel.jumlahKaloriSedang.toDouble();
+      highValue = activityModel.jumlahKaloriTinggi.toDouble();
+      _currentSliderValue = lowValue;
+    }
+  }
+
   bool validate() {
     if (activitynameController.text.isEmpty && durasiController.text.isEmpty) {
       return false;
@@ -28,14 +51,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
     return true;
   }
 
-  TimeOfDay selectedTime = TimeOfDay.now();
-  double lowValue = 0;
-  double midValue = 0;
-  double highValue = 0;
-  double _currentSliderValue = 0.0;
-
   String getSliderLabel(double value) {
-    print(value);
     if (value <= lowValue) {
       return 'Rendah';
     } else if (value > lowValue && value < highValue) {
@@ -43,21 +59,6 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
     } else {
       return 'Tinggi';
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    final activityState = context.read<ActivityBloc>().state;
-    if (activityState is ActivityShowSuccess) {
-      activitynameController.text =
-          activityState.activity.activityName.toString();
-      lowValue = activityState.activity.jumlahKaloriRendah.toDouble();
-      midValue = activityState.activity.jumlahKaloriSedang.toDouble();
-      highValue = activityState.activity.jumlahKaloriTinggi.toDouble();
-      _currentSliderValue =
-          activityState.activity.jumlahKaloriRendah.toDouble();
-    } else {}
   }
 
   double _calculateCaloriesBurned() {
@@ -125,9 +126,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                   title: 'Jenis Aktivitas',
                   controller: activitynameController,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 Text(
                   'Waktu',
                   style: blackPoppinsTextStyle.copyWith(
@@ -142,9 +141,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                       style: blackPoppinsTextStyle.copyWith(
                           fontWeight: semiBold, fontSize: 18),
                     ),
-                    const SizedBox(
-                      width: 30,
-                    ),
+                    const SizedBox(width: 30),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () async {
@@ -168,9 +165,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 18,
-                ),
+                const SizedBox(height: 18),
                 Text(
                   'Intensitas Bermain',
                   style: blackPoppinsTextStyle.copyWith(
@@ -182,9 +177,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                   height: 140,
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 8,
-                      ),
+                      const SizedBox(height: 8),
                       Image.asset(
                         'assets/ic_heart.png',
                         width: 30,
@@ -204,7 +197,6 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                       Slider(
                         value: _currentSliderValue,
                         max: highValue,
-                        activeColor: greenColor,
                         min: lowValue,
                         divisions: 2,
                         onChanged: (double value) {
@@ -224,14 +216,11 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                   controller: durasiController,
                   onDurationChanged: (int duration) {
                     setState(() {
-                      // Update _currentSliderValue here
-                      durasi = duration; // Assuming duration is in minutes
+                      durasiController.text = duration.toString();
                     });
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 CircularPercentIndicator(
                   radius: 65,
                   circularStrokeCap: CircularStrokeCap.round,
@@ -242,7 +231,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        _calculateCalories().toString(),
+                        _calculateCalories().toStringAsFixed(2),
                         style: greenPoppinsTextStyle.copyWith(
                             fontSize: 40, fontWeight: bold),
                       ),
@@ -257,9 +246,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
                 CustomFilledButton(
                   title: 'Simpan',
                   onPressed: () {
@@ -267,12 +254,11 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                       context.read<DetailactivityBloc>().add(
                             DetailActivitySet(
                               ActivityDetailFormModel(
-                                durasi: durasiController.text.toString(),
+                                durasi: durasiController.text,
                                 total_kalori: _calculateCalories().toString(),
                                 waktu:
                                     "${selectedTime.hour}:${selectedTime.minute}",
-                                jenis_activity:
-                                    activitynameController.text.toString(),
+                                jenis_activity: activitynameController.text,
                               ),
                             ),
                           );
@@ -280,7 +266,7 @@ class _CreateNewActivityPageState extends State<CreateNewActivityPage> {
                       showCustomSnackbar(context, 'Semua Field harus diisi!');
                     }
                   },
-                )
+                ),
               ],
             ),
           );

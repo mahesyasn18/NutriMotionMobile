@@ -22,6 +22,18 @@ class _CreateActivityPageState extends State<CreateActivityPage> {
     BlocProvider.of<ActivityBloc>(context).add(const ActivityGet());
   }
 
+  final searchController = TextEditingController();
+  List<ActivityModel> activityData = [];
+  List<ActivityModel> filteredactivityData = [];
+  void filterData(String query) {
+    setState(() {
+      filteredactivityData = activityData
+          .where((activity) =>
+              activity.activityName.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +49,12 @@ class _CreateActivityPageState extends State<CreateActivityPage> {
             showCustomSnackbar(context, state.e);
           } else if (state is ActivityShowSuccess) {
             Navigator.pushReplacementNamed(context, '/create-activity-new');
+          }
+          if (state is ActivitySuccess) {
+            setState(() {
+              activityData = state.activities;
+              filteredactivityData = state.activities;
+            });
           }
         },
         builder: (context, state) {
@@ -83,58 +101,62 @@ class _CreateActivityPageState extends State<CreateActivityPage> {
               ),
             );
           }
-          if (state is ActivitySuccess) {
-            final List<ActivityModel> activities = state.activities;
 
-            return Container(
-              margin: const EdgeInsets.only(left: 15, right: 15, top: 15),
-              child: ListView(
-                children: [
-                  const CustomSearchFormField(hints: 'Cari Kegiatan'),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 24),
-                  Text(
-                    'Daftar Kegiatan',
-                    style: blackPoppinsTextStyle.copyWith(
-                        fontSize: 17, fontWeight: semiBold),
-                  ),
-                  const SizedBox(height: 24),
-                  for (final activity in activities)
-                    BlocConsumer<ActivityBloc, ActivityState>(
-                      listener: (context, state) {
-                        if (state is ActivityFailed) {
-                          showCustomSnackbar(context, state.e);
-                        }
-                      },
-                      builder: (context, state) {
-                        return CustomActivityTile(
-                          iconUrl: activity.photo,
-                          title: activity.activityName,
-                          onTap: () {
-                            // Dispatch an event to show activity details
-                            context.read<ActivityBloc>().add(
-                                  ActivityShow(
-                                    ActivityFormModel(
-                                        activity_name: activity.activityName),
-                                  ),
-                                );
-                          },
-                        );
-                      },
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 12,
+                  left: 20,
+                  right: 20,
+                ),
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Cari Kegiatan',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  const SizedBox(height: 18),
-                ],
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Colors.amber[700],
+                    ),
+                  ),
+                  onChanged: filterData,
+                ),
               ),
-            );
-          }
-
-          return Container(
-            child: Center(
-                child: Text(
-              'No Data',
-              style: blackPoppinsTextStyle.copyWith(
-                  fontSize: 20, fontWeight: semiBold),
-            )),
+              Expanded(
+                child: filteredactivityData.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: filteredactivityData.length,
+                        itemBuilder: (context, index) => Card(
+                            elevation: 0,
+                            key: ValueKey(
+                                filteredactivityData[index].activityName),
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, '/create-activity-new',
+                                      arguments: filteredactivityData[index]);
+                                },
+                                child: CustomActivityTile(
+                                  iconUrl: filteredactivityData[index].photo,
+                                  title: filteredactivityData[index]
+                                      .activityName
+                                      .toString(),
+                                ),
+                              ),
+                            )))
+                    : Text(
+                        'No result found',
+                        style: blackPoppinsTextStyle.copyWith(
+                            fontSize: 17, fontWeight: bold),
+                      ),
+              ),
+            ],
           );
         },
       ),
