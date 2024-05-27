@@ -1,8 +1,3 @@
-<p align="center">
-    <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 ## 🤨 Apa Itu NutriMotion?
 NutriMotion adalah sebuah terobosan revolusioner dalam mendukung gaya hidup sehat di era modern yang penuh dengan kesibukan. Dengan semakin meningkatnya kesadaran akan pentingnya nutrisi yang tepat, NutriMotion hadir sebagai sahabat setia yang membantu Anda menjaga keseimbangan nutrisi dengan mudah dan efektif.
 
