@@ -25,7 +25,7 @@ class FoodBloc extends Bloc<FoodEvent, FoodState> {
       if (event is GetUserEatenFood){
         try {
           emit(FoodLoading());
-          final List<EatenFoodModel> eatenFoodData = await FoodService().getUserEatenFood();
+          final List<EatenFoodModel> eatenFoodData = await FoodService().getUserEatenFood(event.data);
           emit(GetUserEatenFoodSuccess(eatenFoodData));
         } catch (e) {
           emit(FoodFailed(e.toString()));

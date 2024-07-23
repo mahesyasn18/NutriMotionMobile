@@ -8,7 +8,7 @@ import 'package:nutrimotion/shared/shared_values.dart';
 class DailynutService {
   Future<DailyNutritionModel> getUserDailyNutrition(DateTime date) async{
     try {
-      print('date: ' + date.toString());
+      // print('date: ' + date.toString());
       String formattedDate = DateFormat('yyyy-MM-dd').format(date);
       final token = await AuthService().getToken();
       final res = await http.post(

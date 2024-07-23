@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:nutrimotion/models/complete_food_model.dart';
 import 'package:nutrimotion/models/eaten_food_model.dart';
 import 'package:nutrimotion/services/auth_service.dart';
@@ -24,14 +25,16 @@ class FoodService {
     }
   }
 
-  Future<List<EatenFoodModel>> getUserEatenFood() async {
+  Future<List<EatenFoodModel>> getUserEatenFood(DateTime date) async {
     try {
+      String formattedDate = DateFormat('yyyy-MM-dd').format(date);
       final token = await AuthService().getToken();
-      final res = await http.get(
+      final res = await http.post(
         Uri.parse('$baseUrl/get-user-eaten-food'),
         headers: {
           'Authorization': token,
         },
+        body: {'date_time': formattedDate}
       );
       if (res.statusCode == 200) {
         final jsonData = jsonDecode(res.body);
@@ -77,7 +80,6 @@ class FoodService {
 
   Future<List<CompleteFoodModel>> getUserHistoryFood() async {
     try {
-      print('dicobain');
       final token = await AuthService().getToken();
       final res = await http.get(
         Uri.parse('$baseUrl/get-user-history-food'),

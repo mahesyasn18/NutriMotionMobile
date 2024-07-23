@@ -20,7 +20,15 @@ class AddEatenFood extends FoodEvent{
 }
 
 class GetUserEatenFood extends FoodEvent{
-  
+  final DateTime data;
+
+  const GetUserEatenFood(
+    this.data
+  );
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [data];
 }
 
 class GetAllFood extends FoodEvent{}

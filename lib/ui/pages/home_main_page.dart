@@ -53,7 +53,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
     _getUserFood = context.read<FoodBloc>();
     _getUserDailyNut = context.read<DailynutBloc>();
 
-    _getUserFood.add(GetUserEatenFood());
+    _getUserFood.add(GetUserEatenFood(date!));
     _getUserDailyNut.add(GetUserDailyNutrition(date!));
   }
 
@@ -70,8 +70,8 @@ class _HomeMainPageState extends State<HomeMainPage> {
       setState(() {
         date = picked;
         dayName = DateFormat('EEEE').format(date!);
+        _getUserFood.add(GetUserEatenFood(date!));
         _getUserDailyNut.add(GetUserDailyNutrition(date!));
-        _getUserFood.add(GetUserEatenFood());
       });
       HomeMainPage(picked: date);
     }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nutrimotion/blocs/activity/activity_bloc.dart';
 import 'package:nutrimotion/blocs/detailactivity/detailactivity_bloc.dart';
 import 'package:nutrimotion/models/activity_detail_form_model.dart';
 import 'package:nutrimotion/models/activity_model.dart';
