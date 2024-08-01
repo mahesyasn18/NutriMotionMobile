@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="nutrimotion"
+        android:label="Nutrimotion"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
@@ -41,4 +41,7 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
+    <uses-permission android:name="android.permisssion.INTERNET"
+        android:maxSdkVersion="29"/>
 </manifest>

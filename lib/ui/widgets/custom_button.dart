@@ -62,6 +62,7 @@ class CustomFilledButtonWhite extends StatelessWidget {
                   borderRadius: BorderRadius.circular(56))),
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: greenPoppinsTextStyle.copyWith(
                 fontSize: 15, fontWeight: semiBold),
           )),

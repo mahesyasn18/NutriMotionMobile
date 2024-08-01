@@ -644,7 +644,7 @@ class _HomeMainPageState extends State<HomeMainPage> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.257,
+            height: MediaQuery.of(context).size.height * 0.200,
             child: SingleChildScrollView(
               child: Column(
                 children: [

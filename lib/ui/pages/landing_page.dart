@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 100, left: 32),
+            padding: const EdgeInsets.only(top: 70, left: 32),
             child: Text(
               'Hello,',
               style: greenPoppinsTextStyle.copyWith(

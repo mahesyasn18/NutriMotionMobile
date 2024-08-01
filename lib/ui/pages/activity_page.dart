@@ -385,7 +385,7 @@ class _ActivityPageState extends State<ActivityPage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.22,
+                              height: MediaQuery.of(context).size.height * 0.18,
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
                                 child: Column(
@@ -424,11 +424,11 @@ class _ActivityPageState extends State<ActivityPage> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 31),
+                      const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.22,
+                          height: MediaQuery.of(context).size.height * 0.20,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(

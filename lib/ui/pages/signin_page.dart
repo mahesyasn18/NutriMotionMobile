@@ -127,14 +127,7 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(
                   height: 12,
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Lupa Password?',
-                    style: greenPoppinsTextStyle.copyWith(
-                        fontSize: 14, fontWeight: semiBold),
-                  ),
-                ),
+
                 const SizedBox(
                   height: 14,
                 ),

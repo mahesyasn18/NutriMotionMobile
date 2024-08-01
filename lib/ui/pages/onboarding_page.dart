@@ -123,11 +123,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const CustomTextButton(
-                          title: 'Skip',
-                          width: 185,
-                          height: 40,
-                        ),
                       ],
                     ),
                 ],
