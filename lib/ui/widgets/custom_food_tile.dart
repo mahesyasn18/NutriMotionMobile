@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nutrimotion/shared/theme.dart';
+import 'package:nutrimotion/shared/shared_values.dart';
 
 class CustomFoodTile extends StatelessWidget {
   final DateFormat formatter = DateFormat('d MMM yyyy');
   final String foodName;
   final String? foodCal;
   final String? foodSize;
+  final String? foodCategory;
+  final String? foodPicture;
   final DateTime? dateTime;
   final TimeOfDay? eatTime;
   CustomFoodTile(
@@ -14,6 +17,8 @@ class CustomFoodTile extends StatelessWidget {
       this.dateTime,
       this.foodCal,
       this.foodSize,
+      this.foodCategory,
+      this.foodPicture,
       this.eatTime,
       required this.foodName});
 
@@ -32,8 +37,15 @@ class CustomFoodTile extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.only(left: 20),
-                child:
-                    Image.asset(height: 50, width: 50, 'assets/food_img.png'),
+                child: foodPicture == null ?
+                    Image.asset(height: 50, width: 50, 'assets/food_img.png'):
+                    Image.network(baseUrls+foodPicture!, 
+                      height: 50, 
+                      width: 50, 
+                      errorBuilder: (context, error, stackTrace){
+                        return Image.asset(height: 50, width: 50, 'assets/food_img.png');
+                      },
+                    ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -75,11 +87,16 @@ class CustomFoodTile extends StatelessWidget {
                         )
                       : Container(
                           margin: const EdgeInsets.only(left: 10, top: 10),
-                          child: Text(
-                            '${foodCal!} Kal - ${foodSize!} ml',
+                          child: foodCategory == "makanan" ? 
+                          Text(
+                            '${foodCal!} cal - ${foodSize!} g',
                             style: secondaryPoppinsTextStyle.copyWith(
                                 fontSize: 13, fontWeight: light),
-                          ),
+                          ) : Text(
+                            '${foodCal!} cal - ${foodSize!} ml',
+                            style: secondaryPoppinsTextStyle.copyWith(
+                                fontSize: 13, fontWeight: light),
+                          ), 
                         )
                 ],
               )

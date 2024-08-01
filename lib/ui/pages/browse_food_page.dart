@@ -125,6 +125,8 @@ class _BrowseFoodPageState extends State<BrowseFoodPage> {
                                         .toString(),
                                     foodSize:
                                         filteredFoodData[index].size.toString(),
+                                    foodCategory: filteredFoodData[index].foodCategory,
+                                    foodPicture: filteredFoodData[index].picture,
                                   ),
                                 ),
                               )))

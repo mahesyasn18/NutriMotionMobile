@@ -41,6 +41,9 @@ class CustomActivityTile extends StatelessWidget {
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace){
+                  return Image.asset(height: 50, width: 50, 'assets/basketball.png');
+                }
               ),
             ),
             const SizedBox(

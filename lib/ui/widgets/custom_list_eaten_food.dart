@@ -34,8 +34,14 @@ class CustomListEatenFood extends StatelessWidget {
                         fontSize: 16, fontWeight: regular,
                       ),
                     ),
+                    data.foodCategory == "makanan" ?
                     Text(
                       '${data.foodSize}g',
+                      style: greenPoppinsTextStyle.copyWith(
+                        fontSize: 12, fontWeight: semiBold,
+                      ),
+                    ) : Text(
+                      '${data.foodSize}ml',
                       style: greenPoppinsTextStyle.copyWith(
                         fontSize: 12, fontWeight: semiBold,
                       ),

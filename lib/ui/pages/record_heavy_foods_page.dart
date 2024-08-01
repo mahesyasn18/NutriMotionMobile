@@ -99,6 +99,8 @@ class _RecordHeavyFoodsPageState extends State<RecordHeavyFoodsPage> {
                               dateTime: food.dateTime, 
                               foodName: food.foodName,
                               eatTime: food.eatTime,
+                              foodCategory: food.foodCategory,
+                              foodPicture: food.picture,
                             ),
                           ),
                         );
